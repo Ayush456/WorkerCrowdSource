@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
               Intent userDetails = new Intent(MainActivity.this,UserDetailsActivity.class);
               startActivity(userDetails);
 
-
             }
 
         });

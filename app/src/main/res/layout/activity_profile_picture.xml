@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfilePictureActivity">
+
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="322dp"
         android:layout_height="205dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:scaleType="centerCrop"
@@ -17,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.574"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053"
+        app:layout_constraintVertical_bias="0.237"
         app:srcCompat="@drawable/blankprofile" />
 
     <Button
@@ -28,56 +30,31 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
         android:background="@drawable/input_button"
+        android:text="SAVE PICTURE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="214dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.235">
+        app:layout_constraintVertical_bias="1.0" />
 
-        <EditText
-            android:id="@+id/editText4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+    <TextView
+        android:id="@+id/ProfilePicNotifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:textSize="25sp"
+        android:inputType="textPersonName"
+        android:text="Upload Your Profile Picture"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/input_outline"
-            android:ems="10"
-            android:gravity="center"
-            android:hint=" Your Email ID "
-            android:inputType="textPersonName"
-            android:padding="4dp" />
-
-        <EditText
-            android:id="@+id/editText7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/input_outline"
-            android:ems="10"
-            android:gravity="center"
-            android:hint=" Password "
-            android:inputType="textPassword"
-            android:padding="4dp" />
-
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

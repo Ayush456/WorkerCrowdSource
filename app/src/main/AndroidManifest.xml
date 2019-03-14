@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.asus.workercrowdsource">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +23,8 @@
         <activity android:name=".UserDetailsActivity" />
         <activity android:name=".JobsActivity" />
         <activity android:name=".ProfilePictureActivity" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".EmailAndPassActivity"></activity>
     </application>
 
 </manifest>
