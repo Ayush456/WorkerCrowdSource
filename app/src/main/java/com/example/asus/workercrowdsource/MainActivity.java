@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         mprogressBar = (ProgressBar) findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();  // firebase Auth initialization
         mprogressBar.setVisibility(View.GONE);
+
+
+
         //user does a login from this side
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

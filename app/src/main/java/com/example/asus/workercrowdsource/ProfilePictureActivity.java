@@ -18,7 +18,7 @@ import com.google.firebase.storage.UploadTask;
 
 public class ProfilePictureActivity extends AppCompatActivity {
     private ImageButton mProfilePicture;
-    private EditText mUserName,mPassWord;
+
     private String username, password;
     private Button mSave;
     private Uri mImageUri;
@@ -31,8 +31,7 @@ public class ProfilePictureActivity extends AppCompatActivity {
 
         mStorage = FirebaseStorage.getInstance().getReference(); // storage ref declared
 
-        mUserName = (EditText) findViewById(R.id.editText4);
-        mPassWord =(EditText) findViewById(R.id.editText7);
+
         mSave = (Button) findViewById(R.id.button6);
         mProfilePicture = (ImageButton)findViewById(R.id.imageButton);
 
@@ -49,15 +48,9 @@ public class ProfilePictureActivity extends AppCompatActivity {
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(username) || username.length() < 5 ){
-                    mUserName.setError("Either blank or size less than 5");
-                    mUserName.requestFocus();
-                }else if (!TextUtils.isEmpty(password) || password.length() < 5){
-                    mPassWord.setError("Either blank or size less than 5");
-                    mPassWord.requestFocus();
-                }else{
+
                     startPosting();
-                }
+
 
             }
         });
@@ -65,16 +58,17 @@ public class ProfilePictureActivity extends AppCompatActivity {
     }
 
     private void startPosting() {
-        username = mUserName.getText().toString().trim();
-        password = mPassWord.getText().toString().trim();
+
 
         StorageReference filepath = mStorage.child("profile_pic").child(mImageUri.getLastPathSegment());
-        filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-            }
-        });
+//        filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//            }
+//        });
+        Bundle bundle = getIntent().getExtras();
+        startActivity(new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class),bundle);
 
     }
 
