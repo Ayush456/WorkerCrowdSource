@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "520014255647",
+    "firebase_url": "https://workercrowdsource-f9380.firebaseio.com",
+    "project_id": "workercrowdsource-f9380",
+    "storage_bucket": "workercrowdsource-f9380.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520014255647:android:7b158e0b152e5f26",
+        "android_client_info": {
+          "package_name": "com.example.asus.workercrowdsource"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520014255647-sdo8i4mtd071edvufvrqgkln1fkbrbqb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.asus.workercrowdsource",
+            "certificate_hash": "3779ffd620a52ab88ab4cf8ff24c0bef13ad46b7"
+          }
+        },
+        {
+          "client_id": "520014255647-2sihvf715k4ecs96q7l5kv7qtqcnkl71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqEIdb19HWGNyNBBU_35MXXO9-Lb18dSA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520014255647-2sihvf715k4ecs96q7l5kv7qtqcnkl71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
