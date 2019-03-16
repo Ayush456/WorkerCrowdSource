@@ -148,6 +148,14 @@
                 android:text="Job user"
                 android:onClick="onRadioButtonClicked"
                 />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton3"
+                android:layout_weight="1"
+                android:text="Contractor"
+                android:onClick="onRadioButtonClicked"
+                />
         </RadioGroup>
     </LinearLayout>
 

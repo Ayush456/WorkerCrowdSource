@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (mUsername.getText().toString().trim() == null ){
-                    mUsername.setError("UserName required with lenght greater than 8 char! ");
+                if ((mUsername.getText().toString().trim()).equals("")){
+                    mUsername.setError("UserName required with length greater than 8 char! ");
                     mUsername.requestFocus();
-                }else if( mPassowrd.getText().toString().trim()== null){
+                }else if( (mPassowrd.getText().toString().trim()).equals("")){
                     mPassowrd.setError("Password required with length atleast 5 char");
                     mPassowrd.requestFocus();
                 }else{

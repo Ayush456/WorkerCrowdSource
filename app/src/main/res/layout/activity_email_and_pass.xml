@@ -75,19 +75,20 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text=""
-        android:textSize="15sp"
         android:padding="5dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
+        android:text=""
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:textColor="@color/logoColor"
+        android:textSize="15sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText7"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.215" />
 
     <Button
         android:id="@+id/button7"
@@ -105,7 +106,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
         app:layout_constraintVertical_bias="1.0"
-        android:onClick="signup"
         />
 
     <ProgressBar
@@ -117,10 +117,32 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button7"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"
-        />
+        app:layout_constraintVertical_bias="0.612" />
+
+    <EditText
+        android:id="@+id/editText10"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/input_outline"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="repeat password"
+        android:inputType="textPassword"
+        android:padding="5dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText7"
+        app:layout_constraintVertical_bias="0.047" />
 </android.support.constraint.ConstraintLayout>

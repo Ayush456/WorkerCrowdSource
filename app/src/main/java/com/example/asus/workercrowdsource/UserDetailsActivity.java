@@ -38,7 +38,8 @@ public class UserDetailsActivity extends AppCompatActivity {
                 Pin = mPin.getText().toString().trim();
 
                 if( !TextUtils.isEmpty(Name) && !TextUtils.isEmpty(Contact) && !TextUtils.isEmpty(Addr) && !TextUtils.isEmpty(City) && !TextUtils.isEmpty(Pin)){
-                    Intent jobsAct = new Intent(UserDetailsActivity.this,JobsActivity.class);
+                    Intent jobsAct = new Intent(UserDetailsActivity.this,JobsActivity.class);  // for worker
+                    Intent profilePicture = new Intent(UserDetailsActivity.this,ProfilePictureActivity.class);  //for users
                     Bundle bundle = new Bundle();
                     // adding data in bundle
                     bundle.putString("Name",Name);
@@ -46,9 +47,22 @@ public class UserDetailsActivity extends AppCompatActivity {
                     bundle.putString("Address",Addr);
                     bundle.putString("City",City);
                     bundle.putString("Pin",Pin);
-                    jobsAct.putExtras(bundle);
+                    bundle.putString("Role",Role);
+
+//                    jobsAct.putExtras(bundle);
                     //starting activity
-                    startActivity(jobsAct);
+                    if(Role.equalsIgnoreCase("user")){
+                        profilePicture.putExtras(bundle);
+                        startActivity(profilePicture);
+                    }else if (Role.equalsIgnoreCase("worker")){
+                        jobsAct.putExtras(bundle);
+                        startActivity(jobsAct);
+                    }else {
+                        profilePicture.putExtras(bundle);
+                        startActivity(profilePicture);
+                    }
+
+
 
                 }else{
                     Toast.makeText( UserDetailsActivity.this ,"Some Fileds are missing",Toast.LENGTH_SHORT).show();
@@ -83,6 +97,12 @@ public class UserDetailsActivity extends AppCompatActivity {
 
                 }
                 break;
+            case R.id.radioButton3:
+                if(checked){
+                    Role = "contractor";
+                    Toast.makeText(UserDetailsActivity.this,"Role: Contractor Selected",Toast.LENGTH_SHORT).show();
+
+                }
         }
     }
 

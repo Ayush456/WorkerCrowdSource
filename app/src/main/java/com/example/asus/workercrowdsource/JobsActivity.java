@@ -44,6 +44,7 @@ public class JobsActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
+
     }
 
     @Override
