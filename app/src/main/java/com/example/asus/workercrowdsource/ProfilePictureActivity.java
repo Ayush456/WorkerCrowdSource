@@ -25,9 +25,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.yalantis.ucrop.UCrop;
+
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 public class ProfilePictureActivity extends AppCompatActivity {
     private ImageButton mProfilePicture;
@@ -35,7 +36,7 @@ public class ProfilePictureActivity extends AppCompatActivity {
     private byte[] data2;
     private Button mSave;
     private Uri mImageUri;
-    private StorageReference mStorage;
+    private FirebaseStorage mStorage= FirebaseStorage.getInstance();
     UploadTask uploadTask;
     Bitmap imageBitmap;
     private static final int GALLERY_INTENT =2;
@@ -82,6 +83,7 @@ public class ProfilePictureActivity extends AppCompatActivity {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             imageBitmap = (Bitmap) data.getExtras().get("data");
             mProfilePicture.setImageBitmap(imageBitmap);
+            mImageUri = data.getData();
 
 
         }
@@ -89,6 +91,53 @@ public class ProfilePictureActivity extends AppCompatActivity {
     }
 
     public void startPostingImage(Bitmap photo){
+       //Uploading is done here
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageData = baos.toByteArray();
+        final StorageReference profileRef = mStorage.getReference().child("ProfilePicture");
+
+
+        Uri file = Uri.fromFile(new File(""+mImageUri));
+       // UploadTask uploadTask = profileRef.putFile(mImageUri);
+
+        UploadTask uploadTask = profileRef.putBytes(imageData);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                Toast.makeText(ProfilePictureActivity.this,"Success!",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+
+                // Continue with the task to get the download URL
+                return profileRef.getDownloadUrl();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+            @Override
+            public void onComplete(@NonNull Task<Uri> task) {
+                if (task.isSuccessful()) {
+                    Uri downloadUri = task.getResult();
+                    Toast.makeText(ProfilePictureActivity.this,""+downloadUri,Toast.LENGTH_LONG).show();
+                } else {
+                    // Handle failures
+                    // ...
+                    Toast.makeText(ProfilePictureActivity.this,"Profile Picture Upload Failed",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 }
