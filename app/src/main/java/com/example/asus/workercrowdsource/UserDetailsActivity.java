@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 public class UserDetailsActivity extends AppCompatActivity {
     private EditText mName,mCtNo,mAddr,mCity,mPin;
     private String Name,Contact,Addr,City,Pin,Role;
@@ -40,25 +42,29 @@ public class UserDetailsActivity extends AppCompatActivity {
                 if( !TextUtils.isEmpty(Name) && !TextUtils.isEmpty(Contact) && !TextUtils.isEmpty(Addr) && !TextUtils.isEmpty(City) && !TextUtils.isEmpty(Pin)){
                     Intent jobsAct = new Intent(UserDetailsActivity.this,JobsActivity.class);  // for worker
                     Intent profilePicture = new Intent(UserDetailsActivity.this,ProfilePictureActivity.class);  //for users
-                    Bundle bundle = new Bundle();
+
+
                     // adding data in bundle
-                    bundle.putString("Name",Name);
-                    bundle.putString("Contact",Contact);
-                    bundle.putString("Address",Addr);
-                    bundle.putString("City",City);
-                    bundle.putString("Pin",Pin);
-                    bundle.putString("Role",Role);
+                    //By java Object
+                    User user = new User();
+                    user.setName(Name); user.setContactNo(Contact); user.setAddr(Addr); user.setCity(City); user.setPincode(Pin);
 
 //                    jobsAct.putExtras(bundle);
                     //starting activity
                     if(Role.equalsIgnoreCase("user")){
-                        profilePicture.putExtras(bundle);
-                        startActivity(profilePicture);
+                       // profilePicture.putExtras(bundle);
+                      //  startActivity(profilePicture);
+                        user.setRole("user");
+                        jobsAct.putExtra("UserObj", user);
+                        startActivity(jobsAct);
+
                     }else if (Role.equalsIgnoreCase("worker")){
-                        jobsAct.putExtras(bundle);
+                        user.setRole("worker");
+                        jobsAct.putExtra("UserObj", user);
                         startActivity(jobsAct);
                     }else {
-                        profilePicture.putExtras(bundle);
+                        user.setRole("contractor");
+                        profilePicture.putExtra("UserObj", user);
                         startActivity(profilePicture);
                     }
 

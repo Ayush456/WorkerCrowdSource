@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -88,5 +89,33 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        mBtnForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((mUsername.getText().toString().trim()).equalsIgnoreCase("")){
+                    Toast.makeText(MainActivity.this,"Please enter your email address to reset the password",Toast.LENGTH_SHORT).show();
+                }else {
+                    FirebaseAuth.getInstance().sendPasswordResetEmail(mUsername.getText().toString().trim())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(MainActivity.this,"Password Reset Link is Sent",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null){
+            startActivity(new Intent(MainActivity.this,HomeActivity.class));
+        }
     }
 }

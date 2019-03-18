@@ -111,7 +111,7 @@ public class ProfilePictureActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                Toast.makeText(ProfilePictureActivity.this,"Success!",Toast.LENGTH_LONG).show();
+               // Toast.makeText(ProfilePictureActivity.this,"Success!",Toast.LENGTH_LONG).show();
             }
         });
 
