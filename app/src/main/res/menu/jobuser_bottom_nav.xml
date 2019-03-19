@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/post_userjob"
+        android:enabled="true"
+        android:title="Post Jobs"
+        android:icon="@drawable/post"
+        />
+    <item
+        android:id="@+id/view_userjob"
+        android:enabled="true"
+        android:title="View Jobs"
+        android:icon="@drawable/contractor"
+
+        />
+    <item
+        android:id="@+id/view_userprofile"
+        android:enabled="true"
+        android:title="My Profile"
+        android:icon="@drawable/myprofile"
+        />
+
+
+</menu>
