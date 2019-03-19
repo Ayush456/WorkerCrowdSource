@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if ((mUsername.getText().toString().trim()).equalsIgnoreCase("")){
+                    mprogressBar.setVisibility(View.VISIBLE);
                     Toast.makeText(MainActivity.this,"Please enter your email address to reset the password",Toast.LENGTH_SHORT).show();
                 }else {
                     FirebaseAuth.getInstance().sendPasswordResetEmail(mUsername.getText().toString().trim())
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
+                                        mprogressBar.setVisibility(View.INVISIBLE);
                                         Toast.makeText(MainActivity.this,"Password Reset Link is Sent",Toast.LENGTH_SHORT).show();
                                     }
                                 }

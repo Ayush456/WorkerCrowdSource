@@ -36,6 +36,7 @@ public class ProfilePictureActivity extends AppCompatActivity {
     private byte[] data2;
     private Button mSave;
     private Uri mImageUri;
+    private Uri downloadUri;
     private FirebaseStorage mStorage= FirebaseStorage.getInstance();
     UploadTask uploadTask;
     Bitmap imageBitmap;
@@ -69,9 +70,37 @@ public class ProfilePictureActivity extends AppCompatActivity {
         mSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mProgressBar.setVisibility(View.VISIBLE);
+
                 startPostingImage(imageBitmap);
-                mProgressBar.setVisibility(View.INVISIBLE);
+
+                // Role wise we are setting the data value on Activity
+//                Intent prevIntent = getIntent();
+//                User user = (User) prevIntent.getSerializableExtra("UserObj");
+//                String role = user.getRole();
+//
+//                if (role.equalsIgnoreCase("user")){
+//                    Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
+//                    user.setPPLink(downloadUri.toString());
+//                    profilePicAct.putExtra("UserObj",user);
+//                    startActivity(profilePicAct);
+//
+//                }else if(role.equalsIgnoreCase("worker")){
+//                    Bundle bundle = getIntent().getExtras();
+//                    Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
+//                    user.setPPLink(downloadUri.toString());
+//                    profilePicAct.putExtra("UserObj",user);
+//                    startActivity(profilePicAct,bundle);
+//
+//                }else{
+//                    Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
+//                    user.setPPLink(downloadUri.toString());
+//                    profilePicAct.putExtra("UserObj",user);
+//                    startActivity(profilePicAct);
+//
+//                }
+
+
+
             }
         });
 
@@ -92,11 +121,12 @@ public class ProfilePictureActivity extends AppCompatActivity {
 
     public void startPostingImage(Bitmap photo){
        //Uploading is done here
+        mProgressBar.setVisibility(View.VISIBLE);
+
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageData = baos.toByteArray();
         final StorageReference profileRef = mStorage.getReference().child("ProfilePicture");
-
 
         Uri file = Uri.fromFile(new File(""+mImageUri));
        // UploadTask uploadTask = profileRef.putFile(mImageUri);
@@ -119,6 +149,7 @@ public class ProfilePictureActivity extends AppCompatActivity {
             @Override
             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                 if (!task.isSuccessful()) {
+                    mProgressBar.setVisibility(View.INVISIBLE);
                     throw task.getException();
                 }
 
@@ -129,11 +160,45 @@ public class ProfilePictureActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
-                    Uri downloadUri = task.getResult();
-                    Toast.makeText(ProfilePictureActivity.this,""+downloadUri,Toast.LENGTH_LONG).show();
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    downloadUri = task.getResult();
+
+                    Intent prevIntent = getIntent();
+                    User user = (User) prevIntent.getSerializableExtra("UserObj");
+                    String role = user.getRole();
+                    user.setPPLink(downloadUri.toString());
+
+
+
+                    if(role.equals("worker")){
+                        Bundle bundle = getIntent().getExtras();
+                        Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
+                        profilePicAct.putExtra("UserObj",user);
+                        profilePicAct.putExtras(bundle);
+                        startActivity(profilePicAct);
+                        Toast.makeText(ProfilePictureActivity.this,""+bundle.getString("job1")+" "+bundle.getString("job2")+ " " +bundle.getString("job3"),Toast.LENGTH_SHORT).show();
+                    }else if(role.equals("user")){
+                        Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
+                        profilePicAct.putExtra("UserObj",user);
+                        startActivity(profilePicAct);
+                        Toast.makeText(ProfilePictureActivity.this,"user",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
+                        profilePicAct.putExtra("UserObj",user);
+                        startActivity(profilePicAct);
+                        Toast.makeText(ProfilePictureActivity.this,"contractor",Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+
+
+
+
                 } else {
                     // Handle failures
                     // ...
+                    mProgressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(ProfilePictureActivity.this,"Profile Picture Upload Failed",Toast.LENGTH_LONG).show();
                 }
             }

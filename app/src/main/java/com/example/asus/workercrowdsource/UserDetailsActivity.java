@@ -55,8 +55,8 @@ public class UserDetailsActivity extends AppCompatActivity {
                        // profilePicture.putExtras(bundle);
                       //  startActivity(profilePicture);
                         user.setRole("user");
-                        jobsAct.putExtra("UserObj", user);
-                        startActivity(jobsAct);
+                        profilePicture.putExtra("UserObj", user);
+                        startActivity(profilePicture);
 
                     }else if (Role.equalsIgnoreCase("worker")){
                         user.setRole("worker");
