@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean statusContractor = false;
     private Boolean statusUser = false;
     private Boolean statusWorker = false;
-
+    private String uid;
 
     private static final String TAG = "MainActivity";
     @Override
@@ -71,21 +71,26 @@ public class MainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         //registeration is successful
-                                        mprogressBar.setVisibility(View.INVISIBLE);
+
                                         Intent HomeActivity = new Intent(MainActivity.this,HomeActivity.class);
                                         Intent UserActivity = new Intent(MainActivity.this,UserHomeActivity.class);
                                         Intent ContractorActivity = new Intent(MainActivity.this,ContractorHomeActivity.class);
-                                        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-                                        String uid = mUser.getUid();
+
+                                        FirebaseUser mUser = mAuth.getCurrentUser();
+                                        uid = mUser.getUid();
 
                                         if (checkContractor(uid)){
+                                            mprogressBar.setVisibility(View.INVISIBLE);
                                             startActivity(ContractorActivity);
 
                                         }
                                         if(checkUser(uid)){
+                                            mprogressBar.setVisibility(View.INVISIBLE);
                                             startActivity(UserActivity);
+
                                         }
-                                        if(checkWorker(uid)){
+                                       if (checkWorker(uid)){
+                                           mprogressBar.setVisibility(View.INVISIBLE);
                                             startActivity(HomeActivity);
                                         }
 
@@ -153,9 +158,11 @@ public class MainActivity extends AppCompatActivity {
 
             if (checkContractor(uid)){
                 startActivity(ContractorActivity);
-            }else if(checkUser(uid)){
+            }
+            if(checkUser(uid)){
                 startActivity(UserActivity);
-            }else{
+            }
+            if(checkWorker(uid)){
                 startActivity(HomeActivity);
             }
         }
