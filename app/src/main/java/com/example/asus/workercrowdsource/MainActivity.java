@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Field;
+
 public class MainActivity extends AppCompatActivity {
     public EditText mUsername,mPassowrd;
     public Button mBtnLogin,mBtnSignup,mBtnForgotPass;
@@ -70,8 +72,23 @@ public class MainActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         //registeration is successful
                                         mprogressBar.setVisibility(View.INVISIBLE);
-                                        Intent homeActivity = new Intent(MainActivity.this,HomeActivity.class);
-                                        startActivity(homeActivity);
+                                        Intent HomeActivity = new Intent(MainActivity.this,HomeActivity.class);
+                                        Intent UserActivity = new Intent(MainActivity.this,UserHomeActivity.class);
+                                        Intent ContractorActivity = new Intent(MainActivity.this,ContractorHomeActivity.class);
+                                        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+                                        String uid = mUser.getUid();
+
+                                        if (checkContractor(uid)){
+                                            startActivity(ContractorActivity);
+
+                                        }
+                                        if(checkUser(uid)){
+                                            startActivity(UserActivity);
+                                        }
+                                        if(checkWorker(uid)){
+                                            startActivity(HomeActivity);
+                                        }
+
                                     } else {
                                         Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                         mprogressBar.setVisibility(View.INVISIBLE);
@@ -122,35 +139,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null){
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+//        String uid = mUser.getUid();
 
-            String userID = currentUser.getUid();
-           if (checkContractor(userID)){
-               startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
-
-           }else if(checkWorker(userID)){
-               startActivity(new Intent(MainActivity.this,HomeActivity.class));
-
-           }else {
-               startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
-           }
+        Intent HomeActivity = new Intent(MainActivity.this,HomeActivity.class);
+        Intent UserActivity = new Intent(MainActivity.this,UserHomeActivity.class);
+        Intent ContractorActivity = new Intent(MainActivity.this,ContractorHomeActivity.class);
 
 
+        if (mUser != null){
+          //  FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = mUser.getUid();
 
+            if (checkContractor(uid)){
+                startActivity(ContractorActivity);
+            }else if(checkUser(uid)){
+                startActivity(UserActivity);
+            }else{
+                startActivity(HomeActivity);
+            }
         }
 
     }
 
-    public boolean checkContractor(final String UID){
-        final String uid = UID;
+    public Boolean checkWorker(final String uid){
 
-        DatabaseReference contractor = FirebaseDatabase.getInstance().getReference().child("Contractor");
-        contractor.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference worker = FirebaseDatabase.getInstance().getReference().child("Worker");
+        worker.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(uid)){
-                    statusContractor = true;
+                if(dataSnapshot.hasChild(uid)){
+                    statusWorker = true;
                 }
             }
 
@@ -160,13 +179,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        return statusContractor;
+        return statusWorker;
     }
 
-    public boolean checkUser(final String UID){
-        DatabaseReference jobuser = FirebaseDatabase.getInstance().getReference().child("User");
-        jobuser.addListenerForSingleValueEvent(new ValueEventListener() {
-            final String uid = UID;
+    public Boolean checkUser(final String uid){
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("User");
+        user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(uid)){
@@ -179,16 +197,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         return statusUser;
     }
 
-    public boolean checkWorker(final String UID){
-       DatabaseReference worker = FirebaseDatabase.getInstance().getReference().child("Worker");
-       worker.addListenerForSingleValueEvent(new ValueEventListener() {
+    public Boolean checkContractor(final String uid){
+       DatabaseReference contractor = FirebaseDatabase.getInstance().getReference().child("Contractor");
+       contractor.addListenerForSingleValueEvent(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               if (dataSnapshot.hasChild(UID)){
-                   statusWorker = true;
+               if (dataSnapshot.hasChild(uid)){
+                   statusContractor = true;
                }
            }
 
@@ -198,6 +217,8 @@ public class MainActivity extends AppCompatActivity {
            }
        });
 
-         return statusWorker;
+        return statusContractor;
     }
+
+
 }

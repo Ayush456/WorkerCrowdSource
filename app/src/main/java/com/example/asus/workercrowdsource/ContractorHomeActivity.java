@@ -19,23 +19,14 @@ public class ContractorHomeActivity extends AppCompatActivity {
         mBottomNav.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                if (menuItem.getItemId() == R.id.post_contractorjob){
 
-                    case R.id.post_contractorjob:
+                }else if (menuItem.getItemId() == R.id.view_contractorjob){
 
-
-                        break;
-
-                    case R.id.view_contractorjob:
-
-
-                        break;
-
-                    case R.id.view_contractorprofile:
-                        startActivity(new Intent(ContractorHomeActivity.this,MyProfileActivity.class));
-                        break;
-
+                }else{
+                    startActivity(new Intent(ContractorHomeActivity.this,MyProfileActivity.class));
                 }
+
             }
         });
 

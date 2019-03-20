@@ -19,21 +19,13 @@ public class UserHomeActivity extends AppCompatActivity {
         mBottomNav.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+               if (menuItem.getItemId() ==R.id.post_userjob ){
 
-                    case R.id.post_userjob:
+               }else if(menuItem.getItemId() == R.id.view_userjob){
 
-                        break;
-
-                    case R.id.view_userjob:
-
-                        break;
-
-                    case R.id.view_userprofile:
-                        startActivity(new Intent(UserHomeActivity.this,MyProfileActivity.class));
-                        break;
-
-                }
+               }else {
+                   startActivity(new Intent(UserHomeActivity.this,MyProfileActivity.class));
+               }
             }
         });
 
