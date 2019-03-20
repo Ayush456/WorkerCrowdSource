@@ -105,6 +105,17 @@ public class EmailAndPassActivity extends AppCompatActivity {
                                        workerRef.child("Job2").setValue(job2);
                                        workerRef.child("Job3").setValue(job3);
 
+                                       new CountDownTimer(6000, 1000) {
+                                           public void onFinish() {
+                                               FirebaseAuth.getInstance().signOut();
+                                               startActivity(new Intent(EmailAndPassActivity.this,MainActivity.class));
+                                           }
+
+                                           public void onTick(long millisUntilFinished) {
+                                               // millisUntilFinished    The amount of time until finished.
+                                           }
+                                       }.start();
+
                                    }else if(role.equals("user")){
 
                                                DatabaseReference userRef = mDatabase.getReference().child("User").child(userID);
@@ -117,6 +128,17 @@ public class EmailAndPassActivity extends AppCompatActivity {
                                                userRef.child("Role").setValue(user.getRole());
                                                userRef.child("PPLink").setValue(user.getPPLink());
                                                userRef.child("Username").setValue(Uname);
+
+                                       new CountDownTimer(6000, 1000) {
+                                           public void onFinish() {
+                                               FirebaseAuth.getInstance().signOut();
+                                               startActivity(new Intent(EmailAndPassActivity.this,MainActivity.class));
+                                           }
+
+                                           public void onTick(long millisUntilFinished) {
+                                               // millisUntilFinished    The amount of time until finished.
+                                           }
+                                       }.start();
 
                                    }else{
 
@@ -131,6 +153,16 @@ public class EmailAndPassActivity extends AppCompatActivity {
                                        contractorRef.child("PPLink").setValue(user.getPPLink());
                                        contractorRef.child("Username").setValue(Uname);
 
+                                       new CountDownTimer(6000, 1000) {
+                                           public void onFinish() {
+                                               FirebaseAuth.getInstance().signOut();
+                                               startActivity(new Intent(EmailAndPassActivity.this,MainActivity.class));
+                                           }
+
+                                           public void onTick(long millisUntilFinished) {
+                                               // millisUntilFinished    The amount of time until finished.
+                                           }
+                                       }.start();
 
 
                                    }

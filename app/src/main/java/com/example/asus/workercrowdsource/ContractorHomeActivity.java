@@ -21,15 +21,17 @@ public class ContractorHomeActivity extends AppCompatActivity {
             public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
 
-                    case R.id.view_recommended_job:
+                    case R.id.post_contractorjob:
+
 
                         break;
 
-                    case R.id.view_contractors:
+                    case R.id.view_contractorjob:
+
 
                         break;
 
-                    case R.id.view_profile:
+                    case R.id.view_contractorprofile:
                         startActivity(new Intent(ContractorHomeActivity.this,MyProfileActivity.class));
                         break;
 

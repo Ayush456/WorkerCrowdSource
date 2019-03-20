@@ -15,8 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     public EditText mUsername,mPassowrd;
@@ -24,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar mprogressBar;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private Boolean statusContractor = false;
+    private Boolean statusUser = false;
+    private Boolean statusWorker = false;
+
 
     private static final String TAG = "MainActivity";
     @Override
@@ -117,7 +124,80 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null){
-            startActivity(new Intent(MainActivity.this,HomeActivity.class));
+
+            String userID = currentUser.getUid();
+           if (checkContractor(userID)){
+               startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+
+           }else if(checkWorker(userID)){
+               startActivity(new Intent(MainActivity.this,HomeActivity.class));
+
+           }else {
+               startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
+           }
+
+
+
         }
+
+    }
+
+    public boolean checkContractor(final String UID){
+        final String uid = UID;
+
+        DatabaseReference contractor = FirebaseDatabase.getInstance().getReference().child("Contractor");
+        contractor.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(uid)){
+                    statusContractor = true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return statusContractor;
+    }
+
+    public boolean checkUser(final String UID){
+        DatabaseReference jobuser = FirebaseDatabase.getInstance().getReference().child("User");
+        jobuser.addListenerForSingleValueEvent(new ValueEventListener() {
+            final String uid = UID;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(uid)){
+                    statusUser = true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return statusUser;
+    }
+
+    public boolean checkWorker(final String UID){
+       DatabaseReference worker = FirebaseDatabase.getInstance().getReference().child("Worker");
+       worker.addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               if (dataSnapshot.hasChild(UID)){
+                   statusWorker = true;
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+
+         return statusWorker;
     }
 }
