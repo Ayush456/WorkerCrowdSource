@@ -1,7 +1,9 @@
 package com.example.asus.workercrowdsource;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         //user does a login from this side
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
+                @Override
             public void onClick(View v) {
 
                 if ((mUsername.getText().toString().trim()).equals("")){
@@ -70,29 +72,12 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        mprogressBar.setVisibility(View.INVISIBLE);
                                         //registeration is successful
-
-                                        Intent HomeActivity = new Intent(MainActivity.this,HomeActivity.class);
-                                        Intent UserActivity = new Intent(MainActivity.this,UserHomeActivity.class);
-                                        Intent ContractorActivity = new Intent(MainActivity.this,ContractorHomeActivity.class);
-
                                         FirebaseUser mUser = mAuth.getCurrentUser();
                                         uid = mUser.getUid();
+                                        UpdateUI(mUser,uid);
 
-                                        if (checkContractor(uid)){
-                                            mprogressBar.setVisibility(View.INVISIBLE);
-                                            startActivity(ContractorActivity);
-
-                                        }
-                                        if(checkUser(uid)){
-                                            mprogressBar.setVisibility(View.INVISIBLE);
-                                            startActivity(UserActivity);
-
-                                        }
-                                       if (checkWorker(uid)){
-                                           mprogressBar.setVisibility(View.INVISIBLE);
-                                            startActivity(HomeActivity);
-                                        }
 
                                     } else {
                                         Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -144,28 +129,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-//        String uid = mUser.getUid();
-
-        Intent HomeActivity = new Intent(MainActivity.this,HomeActivity.class);
-        Intent UserActivity = new Intent(MainActivity.this,UserHomeActivity.class);
-        Intent ContractorActivity = new Intent(MainActivity.this,ContractorHomeActivity.class);
-
-
-        if (mUser != null){
-          //  FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = mUser.getUid();
-
-            if (checkContractor(uid)){
-                startActivity(ContractorActivity);
-            }
-            if(checkUser(uid)){
-                startActivity(UserActivity);
-            }
-            if(checkWorker(uid)){
-                startActivity(HomeActivity);
-            }
-        }
 
     }
 
@@ -175,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         worker.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(uid)){
+                if(dataSnapshot.child(uid).exists()){
                     statusWorker = true;
                 }
             }
@@ -194,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(uid)){
+                if (dataSnapshot.child(uid).exists()){
                     statusUser = true;
                 }
             }
@@ -213,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
        contractor.addListenerForSingleValueEvent(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               if (dataSnapshot.hasChild(uid)){
+               if (dataSnapshot.child(uid).exists()){
                    statusContractor = true;
                }
            }
@@ -227,5 +190,55 @@ public class MainActivity extends AppCompatActivity {
         return statusContractor;
     }
 
+    public void UpdateUI(FirebaseUser mUser, String uid){
+
+        if (checkWorker(uid)){
+            statusContractor = false;statusUser=false;statusWorker=false;
+            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
+
+        }if(checkUser(uid)){
+            statusContractor = false;statusUser=false;statusWorker=false;
+            Intent intent = new Intent(MainActivity.this,UserHomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
+
+        }
+        if(checkContractor(uid)){
+            statusContractor = false;statusUser=false;statusWorker=false;
+            Intent intent = new Intent(MainActivity.this,ContractorHomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
+
+
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.app_name);
+        builder.setMessage("Do you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+    }
 
 }

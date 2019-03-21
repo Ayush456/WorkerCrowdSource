@@ -3,17 +3,26 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class User implements Serializable{
-    String Name,ContactNo,Addr,Email,City,Pincode,Role,PPLink,UserName;
+    String Name,ContactNo,Addr,City,Pincode,Role,PPLink,UserName,Email;
     public User() {
     }
 
 
-    public User(String Name,String ContactNo,String Address,String Email,String City,String Pincode,String Role,String PPLink
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public User(String Name, String ContactNo, String Address, String City, String Pincode, String Role, String PPLink
     , String UserName){
         this.Name  = Name;
         this.ContactNo = ContactNo;
         this.Addr = Address;
-        this.Email = Email;
+
+
         this.City = City;
         this.Pincode =Pincode;
         this.Role = Role;
@@ -45,13 +54,6 @@ public class User implements Serializable{
         Addr = addr;
     }
 
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
 
     public String getCity() {
         return City;
