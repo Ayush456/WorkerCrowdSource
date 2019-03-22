@@ -159,6 +159,45 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+      mAuth = FirebaseAuth.getInstance();
+      FirebaseUser muser = mAuth.getCurrentUser();
+
+      if (muser!=null){
+          mprogressBar.setVisibility(View.VISIBLE);
+          String uid = muser.getUid();
+          DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+          DatabaseReference AllUsers = mDatabase.child("ALL_USERS");
+          DatabaseReference currentUser = AllUsers.child(uid);
+          currentUser.child("Role").addValueEventListener(new ValueEventListener() {
+              @Override
+              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                  role = (String) dataSnapshot.getValue();
+                  if (role.equals("worker")){
+                      mprogressBar.setVisibility(View.INVISIBLE);
+                      startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                  }
+                  if (role.equals("contractor")){
+                      mprogressBar.setVisibility(View.INVISIBLE);
+                      startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+                  }
+                  if (role.equals("user")){
+                      mprogressBar.setVisibility(View.INVISIBLE);
+                      startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
+                  }
+
+              }
+
+              @Override
+              public void onCancelled(@NonNull DatabaseError databaseError) {
+
+              }
+          });
+      }
+
+
+
+
     }
 
 
