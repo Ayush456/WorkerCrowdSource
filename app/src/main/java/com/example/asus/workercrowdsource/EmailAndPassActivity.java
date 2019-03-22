@@ -105,6 +105,21 @@ public class EmailAndPassActivity extends AppCompatActivity {
                                        workerRef.child("Job2").setValue(job2);
                                        workerRef.child("Job3").setValue(job3);
 
+                                       DatabaseReference AllUsers = mDatabase.getReference().child("ALL_USERS").child(userID);
+                                       AllUsers.child("Name").setValue(user.getName());
+                                       AllUsers.child("ContactNo").setValue(user.getContactNo());
+                                       AllUsers.child("Address").setValue(user.getAddr());
+                                       AllUsers.child("Email").setValue(user.getEmail());
+                                       AllUsers.child("City").setValue(user.getCity());
+                                       AllUsers.child("Pincode").setValue(user.getPincode());
+                                       AllUsers.child("Role").setValue(user.getRole());
+                                       AllUsers.child("PPLink").setValue(user.getPPLink());
+                                       AllUsers.child("Username").setValue(Uname);
+                                       AllUsers.child("Job1").setValue(job1);
+                                       AllUsers.child("Job2").setValue(job2);
+                                       AllUsers.child("Job3").setValue(job3);
+
+
                                        new CountDownTimer(6000, 1000) {
                                            public void onFinish() {
                                                FirebaseAuth.getInstance().signOut();
@@ -129,6 +144,19 @@ public class EmailAndPassActivity extends AppCompatActivity {
                                                userRef.child("PPLink").setValue(user.getPPLink());
                                                userRef.child("Username").setValue(Uname);
 
+                                       DatabaseReference AllUsers = mDatabase.getReference().child("ALL_USERS").child(userID);
+                                               AllUsers.child("Name").setValue(user.getName());
+                                               AllUsers.child("ContactNo").setValue(user.getContactNo());
+                                               AllUsers.child("Address").setValue(user.getAddr());
+                                               AllUsers.child("Email").setValue(user.getEmail());
+                                               AllUsers.child("City").setValue(user.getCity());
+                                               AllUsers.child("Pincode").setValue(user.getPincode());
+                                               AllUsers.child("Role").setValue(user.getRole());
+                                               AllUsers.child("PPLink").setValue(user.getPPLink());
+                                               AllUsers.child("Username").setValue(Uname);
+
+
+
                                        new CountDownTimer(6000, 1000) {
                                            public void onFinish() {
                                                FirebaseAuth.getInstance().signOut();
@@ -152,6 +180,18 @@ public class EmailAndPassActivity extends AppCompatActivity {
                                        contractorRef.child("Role").setValue(user.getRole());
                                        contractorRef.child("PPLink").setValue(user.getPPLink());
                                        contractorRef.child("Username").setValue(Uname);
+
+                                       DatabaseReference AllUsers = mDatabase.getReference().child("ALL_USERS").child(userID);
+                                       AllUsers.child("Name").setValue(user.getName());
+                                       AllUsers.child("ContactNo").setValue(user.getContactNo());
+                                       AllUsers.child("Address").setValue(user.getAddr());
+                                       AllUsers.child("Email").setValue(user.getEmail());
+                                       AllUsers.child("City").setValue(user.getCity());
+                                       AllUsers.child("Pincode").setValue(user.getPincode());
+                                       AllUsers.child("Role").setValue(user.getRole());
+                                       AllUsers.child("PPLink").setValue(user.getPPLink());
+                                       AllUsers.child("Username").setValue(Uname);
+
 
                                        new CountDownTimer(6000, 1000) {
                                            public void onFinish() {
@@ -216,39 +256,3 @@ public class EmailAndPassActivity extends AppCompatActivity {
 
 }
 
-//    DatabaseReference userRef = mDatabase.getReference().child("User").child(userID);
-//                                       userRef.child("Name").setValue(user.getName());
-//                                               userRef.child("ContactNo").setValue(user.getContactNo());
-//                                               userRef.child("Address").setValue(user.getAddr());
-//                                               userRef.child("Email").setValue(user.getEmail());
-//                                               userRef.child("City").setValue(user.getCity());
-//                                               userRef.child("Pincode").setValue(user.getPincode());
-//                                               userRef.child("Role").setValue(user.getRole());
-//                                               userRef.child("PPLink").setValue(user.getPPLink());
-//                                               userRef.child("Username").setValue(userName);
-
-
-//DatabaseReference contractorRef = mDatabase.getReference().child("contractor").child(userID);
-//                                       contractorRef.child("Name").setValue(user.getName());
-//                                       contractorRef.child("ContactNo").setValue(user.getContactNo());
-//                                       contractorRef.child("Address").setValue(user.getAddr());
-//                                       contractorRef.child("Email").setValue(user.getEmail());
-//                                       contractorRef.child("City").setValue(user.getCity());
-//                                       contractorRef.child("Pincode").setValue(user.getPincode());
-//                                       contractorRef.child("Role").setValue(user.getRole());
-//                                       contractorRef.child("PPLink").setValue(user.getPPLink());
-//                                       contractorRef.child("Username").setValue(userName);
-
-//DatabaseReference workerRef = mDatabase.getReference().child("Worker");
-//                                       workerRef.child("Name").setValue(user.getName());
-//                                       workerRef.child("ContactNo").setValue(user.getContactNo());
-//                                       workerRef.child("Address").setValue(user.getAddr());
-//                                       workerRef.child("Email").setValue(user.getEmail());
-//                                       workerRef.child("City").setValue(user.getCity());
-//                                       workerRef.child("Pincode").setValue(user.getPincode());
-//                                       workerRef.child("Role").setValue(user.getRole());
-//                                       workerRef.child("PPLink").setValue(user.getPPLink());
-//                                       workerRef.child("Username").setValue(userName);
-////                                       workerRef.child("Job1").setValue(job1);
-////                                       workerRef.child("Job2").setValue(job2);
-////                                       workerRef.child("Job3").setValue(job3);

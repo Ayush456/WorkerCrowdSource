@@ -2,6 +2,7 @@ package com.example.asus.workercrowdsource;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean statusUser = false;
     private Boolean statusWorker = false;
     private String uid;
-
+    private String role;
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +75,9 @@ public class MainActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         mprogressBar.setVisibility(View.INVISIBLE);
                                         //registeration is successful
-                                        FirebaseUser mUser = mAuth.getCurrentUser();
-                                        uid = mUser.getUid();
-                                        UpdateUI(mUser,uid);
-
+                                         FirebaseUser mUser = mAuth.getCurrentUser();
+                                         uid = mUser.getUid();
+                                         updateUI(mUser,uid);
 
                                     } else {
                                         Toast.makeText(MainActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -126,119 +126,52 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void updateUI(FirebaseUser mUser, String uid) {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference AllUsers = mDatabase.child("ALL_USERS");
+        DatabaseReference currentUser = AllUsers.child(uid);
+        currentUser.child("Role").addValueEventListener(new ValueEventListener() {
+            @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                role = (String) dataSnapshot.getValue();
+                if (role.equals("worker")){
+                    startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                    }
+                if (role.equals("contractor")){
+                startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+                }
+                if (role.equals("user")){
+                startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
+                }
+
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    });
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
 
     }
 
-    public Boolean checkWorker(final String uid){
 
-        DatabaseReference worker = FirebaseDatabase.getInstance().getReference().child("Worker");
-        worker.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child(uid).exists()){
-                    statusWorker = true;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        return statusWorker;
-    }
-
-    public Boolean checkUser(final String uid){
-        DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("User");
-        user.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(uid).exists()){
-                    statusUser = true;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        return statusUser;
-    }
-
-    public Boolean checkContractor(final String uid){
-       DatabaseReference contractor = FirebaseDatabase.getInstance().getReference().child("Contractor");
-       contractor.addListenerForSingleValueEvent(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               if (dataSnapshot.child(uid).exists()){
-                   statusContractor = true;
-               }
-           }
-
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
-
-           }
-       });
-
-        return statusContractor;
-    }
-
-    public void UpdateUI(FirebaseUser mUser, String uid){
-
-        if (checkWorker(uid)){
-            statusContractor = false;statusUser=false;statusWorker=false;
-            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-
-
-        }if(checkUser(uid)){
-            statusContractor = false;statusUser=false;statusWorker=false;
-            Intent intent = new Intent(MainActivity.this,UserHomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-
-
-        }
-        if(checkContractor(uid)){
-            statusContractor = false;statusUser=false;statusWorker=false;
-            Intent intent = new Intent(MainActivity.this,ContractorHomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-
-
-
-        }
-
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle(R.string.app_name);
-        builder.setMessage("Do you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-
-    }
 
 }
+//
+// role =dataSnapshot.child("Role").getValue(String.class).toString();
+//        if (role.equals("worker")){
+//        startActivity(new Intent(MainActivity.this,HomeActivity.class));
+//        }
+//        if (role.equals("contractor")){
+//        startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+//        }
+//        if (role.equals("user")){
+//        startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
+//        }

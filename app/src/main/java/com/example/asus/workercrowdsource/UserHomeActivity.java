@@ -22,7 +22,7 @@ public class UserHomeActivity extends AppCompatActivity {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
                if (menuItem.getItemId() ==R.id.post_userjob ){
-
+                    startActivity(new Intent(UserHomeActivity.this,UserProvideJobsActivity.class));
                }else if(menuItem.getItemId() == R.id.view_userjob){
 
                }else {

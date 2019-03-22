@@ -38,7 +38,8 @@
         <activity android:name=".PromptToSignupActivity" />
         <activity android:name=".MyProfileActivity" />
         <activity android:name=".UserHomeActivity" />
-        <activity android:name=".ContractorHomeActivity"></activity>
+        <activity android:name=".ContractorHomeActivity" />
+        <activity android:name=".UserProvideJobsActivity"></activity>
     </application>
 
 </manifest>

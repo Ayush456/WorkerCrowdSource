@@ -1,6 +1,7 @@
 package com.example.asus.workercrowdsource;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -58,25 +59,16 @@ public class MyProfileActivity extends AppCompatActivity {
         });
 
 
-        //Toast.makeText(MyProfileActivity.this,UID,Toast.LENGTH_LONG).show();
+        Toast.makeText(MyProfileActivity.this,UID,Toast.LENGTH_LONG).show();
 
-        if (checkWorker(UID) == 1){
-            Toast.makeText(MyProfileActivity.this,UID,Toast.LENGTH_LONG).show();
-        }
-        if (checkUser(UID) == 1){
-            Toast.makeText(MyProfileActivity.this,UID,Toast.LENGTH_LONG).show();
-        }
-        if (checkContractor(UID) == 1){
-            Toast.makeText(MyProfileActivity.this,UID,Toast.LENGTH_LONG).show();
-        }
-
-
+        PutDetails(UID);
 
 
 
 
 
     }
+
 
     public int checkWorker(final String uid){
         DatabaseReference worker =FirebaseDatabase.getInstance().getReference().child("Worker");
@@ -135,5 +127,33 @@ public class MyProfileActivity extends AppCompatActivity {
         return statusContractor;
     }
 
+
+    private void PutDetails(String uid) {
+
+     if (checkUser(uid) == 1){
+         DatabaseReference user = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
+         user.addValueEventListener(new ValueEventListener() {
+             @Override
+             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                 String name = (String) dataSnapshot.child("Name").getValue();
+                 mName.setText(name);
+             }
+
+             @Override
+             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+             }
+         });
+     }
+
+     if (checkWorker(uid) == 1){
+
+     }
+
+     if (checkContractor(uid) == 1){
+
+     }
+
+    }
 
 }
