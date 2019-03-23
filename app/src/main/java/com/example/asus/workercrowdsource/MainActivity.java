@@ -175,15 +175,29 @@ public class MainActivity extends AppCompatActivity {
                   role = (String) dataSnapshot.getValue();
                   if (role.equals("worker")){
                       mprogressBar.setVisibility(View.INVISIBLE);
-                      startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                      Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                      startActivity(intent);
+                      finish();
+                      //startActivity(new Intent(MainActivity.this,HomeActivity.class));
                   }
                   if (role.equals("contractor")){
                       mprogressBar.setVisibility(View.INVISIBLE);
-                      startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+                      Intent intent = new Intent(MainActivity.this, ContractorHomeActivity.class);
+                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                      startActivity(intent);
+                      finish();
+
+                    //  startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
                   }
                   if (role.equals("user")){
                       mprogressBar.setVisibility(View.INVISIBLE);
-                      startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
+                      Intent intent = new Intent(MainActivity.this, UserHomeActivity.class);
+                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                      startActivity(intent);
+                      finish();
+
+                    //  startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
                   }
 
               }
@@ -203,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(R.string.app_name);
         builder.setMessage("Do you want to exit?")
