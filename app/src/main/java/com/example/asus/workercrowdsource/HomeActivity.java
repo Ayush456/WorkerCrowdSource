@@ -29,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
              if (menuItem.getItemId() == R.id.view_recommended_job){
 
+
+
              }else if(menuItem.getItemId() ==R.id.view_contractors){
 
              }else{

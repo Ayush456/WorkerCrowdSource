@@ -29,6 +29,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProfilePictureActivity extends AppCompatActivity {
     private ImageButton mProfilePicture;
@@ -126,9 +128,12 @@ public class ProfilePictureActivity extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageData = baos.toByteArray();
-        final StorageReference profileRef = mStorage.getReference().child("ProfilePicture");
 
         Uri file = Uri.fromFile(new File(""+mImageUri));
+        SimpleDateFormat s = new SimpleDateFormat("ddMMyyyyhhmmss");
+        String format = s.format(new Date());
+        final StorageReference profileRef = mStorage.getReference().child("ProfilePicture/"+format);
+
        // UploadTask uploadTask = profileRef.putFile(mImageUri);
 
         UploadTask uploadTask = profileRef.putBytes(imageData);

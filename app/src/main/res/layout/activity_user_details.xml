@@ -64,7 +64,7 @@
             android:background="@drawable/input_outline"
             android:ems="10"
             android:gravity="center"
-            android:hint="contact no"
+            android:hint="Contact"
             android:inputType="number"
             android:maxLength="10"
             android:padding="5dp" />
@@ -92,7 +92,7 @@
             android:background="@drawable/input_outline"
             android:ems="10"
             android:gravity="center"
-            android:hint="city"
+            android:hint="City"
             android:inputType="textPersonName"
             android:padding="6dp" />
 
@@ -104,7 +104,7 @@
             android:background="@drawable/input_outline"
             android:ems="10"
             android:gravity="center"
-            android:hint="pincode"
+            android:hint="Pincode"
             android:inputType="number"
             android:maxLength="6"
             android:maxLines="1"

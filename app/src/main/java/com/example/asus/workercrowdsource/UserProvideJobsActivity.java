@@ -28,14 +28,14 @@ import java.util.Calendar;
 public class UserProvideJobsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner mJob1;
     private Button mPost;
-    private EditText mCustomJob,mSalary,mEstWorker;
+    private EditText mCustomJob,mSalary,mEstWorker,mAddress;
     private TextView mStart,mEnd;
     private String arr1[] = {"Painter","Plumber","Mechanic","Pest Controller","Laundary","House Cleaner","Electrician","AC mechanic","Carpenter","Other"};
-    private  String jobsToPost = "",mStartDate="",mEndDate="",salary="",NoOfWorker = "";
+    private  String jobsToPost = "",mStartDate="",mEndDate="",salary="",NoOfWorker = "",Address="";
     String item;
     private FirebaseDatabase mDB = FirebaseDatabase.getInstance();
     private FirebaseAuth mAu = FirebaseAuth.getInstance();
-    private  ProgressBar mProgress;
+    private ProgressBar progressBar;
 
     private int sDay,sMonth,sYear,eDay,eMonth,eYear;
     Calendar calendar;
@@ -52,9 +52,9 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
         mSalary = findViewById(R.id.editText12);
         mPost = findViewById(R.id.button12);
         mEstWorker = findViewById(R.id.editText15);
-        mProgress = findViewById(R.id.progressBar4);
-        mProgress.setVisibility(View.INVISIBLE);
-
+        progressBar = findViewById(R.id.progressBar5);
+        progressBar.setVisibility(View.INVISIBLE);
+        mAddress = findViewById(R.id.editText13);
 
 
         mCustomJob.setEnabled(false); // Disabling the custom editetxt
@@ -121,17 +121,18 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
         mPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mProgress.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 salary = mSalary.getText().toString().trim();
+                Address = mAddress.getText().toString().trim();
                 if (item.equals("Other")){
                     jobsToPost = mCustomJob.getText().toString().trim();
                 }else{
-                    jobsToPost = mJob1.toString();
+                    jobsToPost = item;
                 }
 
                 NoOfWorker = mEstWorker.getText().toString().trim();
                 if (!TextUtils.isEmpty(mStartDate) && !TextUtils.isEmpty(mEndDate) && !TextUtils.isEmpty(jobsToPost) && !TextUtils.isEmpty(salary)
-                        && !TextUtils.isEmpty(NoOfWorker)){
+                        && !TextUtils.isEmpty(NoOfWorker) && !TextUtils.isEmpty(Address)){
                     //Storing into the database has to b done here
 
                     DatabaseReference pushPostKey = mCurrentUserPost.push();
@@ -139,11 +140,14 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                     pushPostKey.child("Salary").setValue(salary);
                     pushPostKey.child("StartDate").setValue(mStartDate);
                     pushPostKey.child("EndDate").setValue(mEndDate);
+                    pushPostKey.child("Address").setValue(Address);
                     pushPostKey.child("EstNoOfWorker").setValue(NoOfWorker);
-                    mProgress.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(UserProvideJobsActivity.this,"Job is been posted",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(UserProvideJobsActivity.this,UserHomeActivity.class));
 
                 }else{
-                    mProgress.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(UserProvideJobsActivity.this,"Some Details are missing",Toast.LENGTH_LONG).show();
                 }
             }
