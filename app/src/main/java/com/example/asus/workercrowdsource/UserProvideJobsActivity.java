@@ -32,11 +32,10 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
     private TextView mStart,mEnd;
     private String arr1[] = {"Painter","Plumber","Mechanic","Pest Controller","Laundary","House Cleaner","Electrician","AC mechanic","Carpenter","Other"};
     private  String jobsToPost = "",mStartDate="",mEndDate="",salary="",NoOfWorker = "",Address="";
-    String item;
+    String item="";
     private FirebaseDatabase mDB = FirebaseDatabase.getInstance();
     private FirebaseAuth mAu = FirebaseAuth.getInstance();
-    private ProgressBar progressBar;
-
+    private ProgressBar MprogressBar;
     private int sDay,sMonth,sYear,eDay,eMonth,eYear;
     Calendar calendar;
 
@@ -45,6 +44,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_provide_jobs);
 
+
         mStart = findViewById(R.id.textView21);
         mEnd = findViewById(R.id.textView22);
         mJob1 = findViewById(R.id.spinner);
@@ -52,8 +52,8 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
         mSalary = findViewById(R.id.editText12);
         mPost = findViewById(R.id.button12);
         mEstWorker = findViewById(R.id.editText15);
-        progressBar = findViewById(R.id.progressBar5);
-        progressBar.setVisibility(View.INVISIBLE);
+        MprogressBar = (ProgressBar)findViewById(R.id.progressBar5);
+        MprogressBar.setVisibility(View.INVISIBLE);
         mAddress = findViewById(R.id.editText13);
 
 
@@ -77,6 +77,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
        final String userId = mCurrentUser.getUid();
        final DatabaseReference mUserPostJobs = mDB.getReference().child("USER_POST_JOBS");
        final DatabaseReference mCurrentUserPost = mUserPostJobs.child(userId);
+
        mStart.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -117,11 +118,10 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
             }
         });
 
-
         mPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
+                //getting all the required data
                 salary = mSalary.getText().toString().trim();
                 Address = mAddress.getText().toString().trim();
                 if (item.equals("Other")){
@@ -129,29 +129,51 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                 }else{
                     jobsToPost = item;
                 }
-
                 NoOfWorker = mEstWorker.getText().toString().trim();
-                if (!TextUtils.isEmpty(mStartDate) && !TextUtils.isEmpty(mEndDate) && !TextUtils.isEmpty(jobsToPost) && !TextUtils.isEmpty(salary)
-                        && !TextUtils.isEmpty(NoOfWorker) && !TextUtils.isEmpty(Address)){
-                    //Storing into the database has to b done here
 
-                    DatabaseReference pushPostKey = mCurrentUserPost.push();
-                    pushPostKey.child("Job").setValue(jobsToPost);
-                    pushPostKey.child("Salary").setValue(salary);
-                    pushPostKey.child("StartDate").setValue(mStartDate);
-                    pushPostKey.child("EndDate").setValue(mEndDate);
-                    pushPostKey.child("Address").setValue(Address);
-                    pushPostKey.child("EstNoOfWorker").setValue(NoOfWorker);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(UserProvideJobsActivity.this,"Job is been posted",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(UserProvideJobsActivity.this,UserHomeActivity.class));
-
+                // cross validation
+                if (item.equals("")){
+                    Toast.makeText(UserProvideJobsActivity.this,"Please Input job field",Toast.LENGTH_SHORT).show();
                 }else{
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(UserProvideJobsActivity.this,"Some Details are missing",Toast.LENGTH_LONG).show();
+                    if (salary.equals("")){
+                        mSalary.setError("Salary cannot be Null");
+                        mSalary.requestFocus();
+                    }else {
+                        if (NoOfWorker.equals("")){
+                            mEstWorker.setError("No of workers expected cannot be null");
+                            mEstWorker.requestFocus();
+                        }else {
+                            if (Address.equals("")){
+                                mAddress.setError("Address cannot be Null");
+                                mAddress.requestFocus();
+                            }else{
+                                if (mStartDate.equals("") || mEndDate.equals("")){
+                                    Toast.makeText(UserProvideJobsActivity.this,"Start Or End Date is Missing",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    MprogressBar.setVisibility(View.VISIBLE);
+                                    DatabaseReference pushPostKey = mCurrentUserPost.push();
+                                    pushPostKey.child("Job").setValue(jobsToPost);
+                                    pushPostKey.child("Salary").setValue(salary);
+                                    pushPostKey.child("StartDate").setValue(mStartDate);
+                                    pushPostKey.child("EndDate").setValue(mEndDate);
+                                    pushPostKey.child("Address").setValue(Address);
+                                    pushPostKey.child("EstNoOfWorker").setValue(NoOfWorker);
+                                    MprogressBar.setVisibility(View.INVISIBLE);
+                                    Intent userHomeIntent = new Intent(UserProvideJobsActivity.this,UserHomeActivity.class);
+                                    userHomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(userHomeIntent);
+
+                                }
+                            }
+                        }
+                    }
                 }
+
             }
         });
+
+
+
 
     }
 
@@ -175,3 +197,4 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
         Toast.makeText(UserProvideJobsActivity.this,"Please Select Any Item",Toast.LENGTH_SHORT).show();
     }
 }
+

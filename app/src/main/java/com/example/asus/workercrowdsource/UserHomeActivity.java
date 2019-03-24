@@ -26,7 +26,7 @@ public class UserHomeActivity extends AppCompatActivity {
                }else if(menuItem.getItemId() == R.id.view_userjob){
 
                }else {
-                   startActivity(new Intent(UserHomeActivity.this,MyProfileActivity.class));
+                   startActivity(new Intent(UserHomeActivity.this,ProfileDetailsActivity.class));
                }
             }
         });

@@ -4,17 +4,13 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class User implements Serializable{
     String Name,ContactNo,Addr,City,Pincode,Role,PPLink,UserName,Email;
+
     public User() {
+
     }
 
 
-    public String getEmail() {
-        return Email;
-    }
 
-    public void setEmail(String email) {
-        Email = email;
-    }
 
     public User(String Name, String ContactNo, String Address, String City, String Pincode, String Role, String PPLink
     , String UserName){
@@ -93,5 +89,12 @@ public class User implements Serializable{
 
     public void setUserName(String userName) {
         UserName = userName;
+    }
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 }

@@ -33,8 +33,10 @@ public class HomeActivity extends AppCompatActivity {
 
              }else if(menuItem.getItemId() ==R.id.view_contractors){
 
+                 startActivity(new Intent(HomeActivity.this,ShowContractors.class));
+
              }else{
-                 startActivity(new Intent(HomeActivity.this,MyProfileActivity.class));
+                 startActivity(new Intent(HomeActivity.this,ProfileDetailsActivity.class));
              }
            }
        });

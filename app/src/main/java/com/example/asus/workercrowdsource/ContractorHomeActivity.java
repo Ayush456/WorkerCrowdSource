@@ -26,7 +26,7 @@ public class ContractorHomeActivity extends AppCompatActivity {
                 }else if (menuItem.getItemId() == R.id.view_contractorjob){
 
                 }else{
-                    startActivity(new Intent(ContractorHomeActivity.this,MyProfileActivity.class));
+                    startActivity(new Intent(ContractorHomeActivity.this,ProfileDetailsActivity.class));
                 }
 
             }
