@@ -7,5 +7,16 @@
     <color name="textHintColor">#A1887F</color>
     <color name="logoColor">#ED1C24</color>
     <color name="white">#FFFFFF</color>
-
+    <color name="dark_purple">#880e4f</color>
+    <color name="dark_purple2">#ad1457</color>
+    <color name="dark_purple3">#c2185b</color>
+    <color name="dp1">#c51162</color>
+    <color name="dp2">#f50057</color>
+    <color name="dp3">#ff4081</color>
+    <color name="gold1">#ff6d00</color>
+    <color name="gold2">#ff9100</color>
+    <color name="black">#212121</color>
+    <color name="teal_dark">#263238</color>
+    <color name="shadow">#bdbdbd</color>
+    <color name="shadow_dark">#bdbdbd</color>
 </resources>
