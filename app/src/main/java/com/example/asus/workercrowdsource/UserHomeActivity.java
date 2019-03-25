@@ -13,13 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserHomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -76,15 +80,29 @@ public class UserHomeActivity extends AppCompatActivity {
                         .setQuery(mUserJobs, PostJobsObject.class)
                         .build();
 
+
        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<PostJobsObject, PostViewHolder>(options) {
           @Override
           protected void onBindViewHolder(@NonNull PostViewHolder holder, int position, @NonNull PostJobsObject model) {
+
+              final String post_key = getRef(position).getKey().toString();
+              final String post_parent = getRef(position).getParent().getKey().toString();
               holder.setAddress(model.getAddress());
               holder.setEndDate(model.getEndDate());
               holder.setStartDate(model.getStartDate());
               holder.setJobTitle(model.getJob());
               holder.setWorkerCount(model.getEstNoOfWorker());
               holder.setSalary(model.getSalary());
+              holder.setContactNo(post_parent);
+              holder.setEmailId(post_parent);
+
+              holder.mView.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      Toast.makeText(UserHomeActivity.this, post_parent,Toast.LENGTH_LONG ).show();
+                  }
+              });
+
           }
 
 
@@ -106,10 +124,15 @@ public class UserHomeActivity extends AppCompatActivity {
 
     public static class PostViewHolder extends RecyclerView.ViewHolder{
        View mView;
+       FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+       String current_user_id = current_user.getUid();
+
+      // DatabaseReference Current_User_Details = FirebaseDatabase.getInstance().getReference().child("ALL_USERS").child(current_user_id);
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mView = itemView;
+
         }
 
        public void setJobTitle(String Title){
@@ -129,19 +152,56 @@ public class UserHomeActivity extends AppCompatActivity {
 
        public void setWorkerCount(String count){
             TextView post_worker_count = mView.findViewById(R.id.post_worker_count);
+            post_worker_count.setText(count);
        }
 
-       public void setContactNo(String ContactNo){
-            TextView post_contactNo = mView.findViewById(R.id.post_contact_no);
+       public void setContactNo(String uid){
+            final TextView post_contactNo = mView.findViewById(R.id.post_contact_no);
+            DatabaseReference Current_user_details = FirebaseDatabase.getInstance().getReference().child("ALL_USERS").child(uid);
+            final String[] contact = new String[1];
+            Current_user_details.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    AllUsers user = dataSnapshot.getValue(AllUsers.class);
+                    contact[0] = user.getContactNo();
+                    post_contactNo.setText(contact[0]);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
        }
-       public void setEmailId(String Email){
-            TextView post_email_id = mView.findViewById(R.id.post_email);
+       public void setEmailId(String uid){
+            final TextView post_email_id = mView.findViewById(R.id.post_email);
+           DatabaseReference Current_user_details = FirebaseDatabase.getInstance().getReference().child("ALL_USERS").child(uid);
+           String email;
+
+           Current_user_details.addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   AllUsers user = dataSnapshot.getValue(AllUsers.class);
+                   post_email_id.setText(user.getUsername());
+               }
+
+               @Override
+               public void onCancelled(@NonNull DatabaseError databaseError) {
+
+               }
+           });
+
+
        }
        public void setStartDate(String StartDate){
             TextView post_start_date = mView.findViewById(R.id.post_start_date);
+            post_start_date.setText(StartDate);
        }
        public void setEndDate(String EndDate){
             TextView post_end_date = mView.findViewById(R.id.post_end_date);
+            post_end_date.setText(EndDate);
        }
 
     }
