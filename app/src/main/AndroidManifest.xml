@@ -41,6 +41,10 @@
         <activity android:name=".UserProvideJobsActivity" />
         <activity android:name=".ProfileDetailsActivity" />
         <activity android:name=".ChangeDetailsActivity"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
