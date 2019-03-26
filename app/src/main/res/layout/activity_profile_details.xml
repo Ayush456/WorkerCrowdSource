@@ -7,6 +7,46 @@
     tools:context=".ProfileDetailsActivity">
 
     <LinearLayout
+        android:layout_width="383dp"
+        android:layout_height="234dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/layout_image_backround"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imageView4"
+            android:layout_width="264dp"
+            android:layout_height="228dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_image"
+            android:elevation="8dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
+            android:src="@drawable/profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.029"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="347dp"
         android:layout_height="28dp"
         android:layout_marginStart="8dp"
@@ -22,39 +62,35 @@
         app:layout_constraintVertical_bias="0.796">
 
 
+
+
         <TextView
             android:id="@+id/textView42"
             android:layout_width="50dp"
-            android:padding="4dp"
-            android:textColor="@color/logoColor"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="City" />
+            android:padding="4dp"
+            android:text="City"
+            android:textStyle="bold"
+            android:textColor="@color/logoColor" />
 
         <TextView
             android:id="@+id/textView43"
             android:layout_width="150dp"
-            android:padding="4dp"
-            android:textColor="@color/colorPrimaryDark"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="TextView" />
-    </LinearLayout>
+            android:padding="4dp"
+            android:textStyle="bold"
+            android:text="TextView"
+            android:textColor="@color/colorPrimaryDark" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="264dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029"
-        app:srcCompat="@drawable/profile" />
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            app:srcCompat="@drawable/icon_change" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="347dp"
@@ -76,6 +112,7 @@
             android:id="@+id/textView40"
             android:layout_width="50dp"
             android:padding="4dp"
+            android:textStyle="bold"
             android:textColor="@color/logoColor"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -85,10 +122,18 @@
             android:id="@+id/textView41"
             android:padding="4dp"
             android:layout_width="150dp"
+            android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="TextView" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            app:srcCompat="@drawable/icon_change" />
     </LinearLayout>
 
     <LinearLayout
@@ -114,6 +159,7 @@
             android:layout_weight="1"
             android:padding="4dp"
             android:text="Email"
+            android:textStyle="bold"
             android:textColor="@color/logoColor" />
 
         <TextView
@@ -123,7 +169,15 @@
             android:layout_weight="1"
             android:padding="4dp"
             android:text="TextView"
+            android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            app:srcCompat="@drawable/icon_change" />
     </LinearLayout>
 
     <LinearLayout
@@ -154,6 +208,8 @@
                 android:layout_height="25dp"
                 android:layout_weight="1"
                 android:padding="4dp"
+                android:textStyle="bold"
+
                 android:text="Name"
                 android:textColor="@color/logoColor"
                 android:textSize="15sp" />
@@ -165,8 +221,16 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:text="TextView"
+                android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                app:srcCompat="@drawable/icon_change" />
 
         </LinearLayout>
 
@@ -180,13 +244,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/input_button"
         android:text="Signout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>

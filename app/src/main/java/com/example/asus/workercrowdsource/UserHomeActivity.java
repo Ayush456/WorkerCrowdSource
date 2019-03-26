@@ -158,6 +158,8 @@ public class UserHomeActivity extends AppCompatActivity {
        public void setContactNo(String uid){
             final TextView post_contactNo = mView.findViewById(R.id.post_contact_no);
             DatabaseReference Current_user_details = FirebaseDatabase.getInstance().getReference().child("ALL_USERS").child(uid);
+            Current_user_details.keepSynced(true);
+
             final String[] contact = new String[1];
             Current_user_details.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

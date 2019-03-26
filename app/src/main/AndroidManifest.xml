@@ -39,7 +39,8 @@
         <activity android:name=".UserHomeActivity" />
         <activity android:name=".ContractorHomeActivity" />
         <activity android:name=".UserProvideJobsActivity" />
-        <activity android:name=".ProfileDetailsActivity"></activity>
+        <activity android:name=".ProfileDetailsActivity" />
+        <activity android:name=".ChangeDetailsActivity"></activity>
     </application>
 
 </manifest>

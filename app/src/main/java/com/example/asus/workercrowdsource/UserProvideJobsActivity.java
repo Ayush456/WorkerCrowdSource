@@ -77,6 +77,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
        final String userId = mCurrentUser.getUid();
        final DatabaseReference mUserPostJobs = mDB.getReference().child("USER_POST_JOBS");
        final DatabaseReference mCurrentUserPost = mUserPostJobs.child(userId);
+       FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
        mStart.setOnClickListener(new View.OnClickListener() {
            @Override

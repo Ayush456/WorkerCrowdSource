@@ -162,51 +162,60 @@ public class MainActivity extends AppCompatActivity {
       mAuth = FirebaseAuth.getInstance();
       FirebaseUser muser = mAuth.getCurrentUser();
 
+
+
       if (muser!=null){
-          mprogressBar.setVisibility(View.VISIBLE);
-          String uid = muser.getUid();
-          DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-          DatabaseReference AllUsers = mDatabase.child("ALL_USERS");
-          DatabaseReference currentUser = AllUsers.child(uid);
-          currentUser.child("Role").addValueEventListener(new ValueEventListener() {
-              @Override
-              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                  role = (String) dataSnapshot.getValue();
-                  if (role.equals("worker")){
-                      mprogressBar.setVisibility(View.INVISIBLE);
-                      Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                      startActivity(intent);
-                      finish();
-                      //startActivity(new Intent(MainActivity.this,HomeActivity.class));
+          if (muser.isEmailVerified()){
+              mprogressBar.setVisibility(View.VISIBLE);
+              String uid = muser.getUid();
+              DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+              DatabaseReference AllUsers = mDatabase.child("ALL_USERS");
+              DatabaseReference currentUser = AllUsers.child(uid);
+              currentUser.child("Role").addValueEventListener(new ValueEventListener() {
+                  @Override
+                  public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                      role = (String) dataSnapshot.getValue();
+                      if (role.equals("worker")){
+                          mprogressBar.setVisibility(View.INVISIBLE);
+                          Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                          startActivity(intent);
+                          finish();
+                          //startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                      }
+                      if (role.equals("contractor")){
+                          mprogressBar.setVisibility(View.INVISIBLE);
+                          Intent intent = new Intent(MainActivity.this, ContractorHomeActivity.class);
+                          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                          startActivity(intent);
+                          finish();
+
+                          //  startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+                      }
+                      if (role.equals("user")){
+                          mprogressBar.setVisibility(View.INVISIBLE);
+                          Intent intent = new Intent(MainActivity.this, UserHomeActivity.class);
+                          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                          startActivity(intent);
+                          finish();
+
+                          //  startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
+                      }
+
                   }
-                  if (role.equals("contractor")){
-                      mprogressBar.setVisibility(View.INVISIBLE);
-                      Intent intent = new Intent(MainActivity.this, ContractorHomeActivity.class);
-                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                      startActivity(intent);
-                      finish();
 
-                    //  startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+                  @Override
+                  public void onCancelled(@NonNull DatabaseError databaseError) {
+
                   }
-                  if (role.equals("user")){
-                      mprogressBar.setVisibility(View.INVISIBLE);
-                      Intent intent = new Intent(MainActivity.this, UserHomeActivity.class);
-                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                      startActivity(intent);
-                      finish();
+              });
+          }else{
+              startActivity(new Intent(MainActivity.this,PromptToSignupActivity.class));
+          }
 
-                    //  startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
-                  }
 
-              }
-
-              @Override
-              public void onCancelled(@NonNull DatabaseError databaseError) {
-
-              }
-          });
       }
 
 
@@ -248,3 +257,8 @@ public class MainActivity extends AppCompatActivity {
 //        if (role.equals("user")){
 //        startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
 //        }
+
+//  if (ContextCompat.checkSelfPermission(thisActivity, Manifest.permission.WRITE_CALENDAR)
+//        != PackageManager.PERMISSION_GRANTED) {
+//      Permission is not granted
+//}

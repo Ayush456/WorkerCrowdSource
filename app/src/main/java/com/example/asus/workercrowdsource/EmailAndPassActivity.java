@@ -48,6 +48,8 @@ public class EmailAndPassActivity extends AppCompatActivity {
         mBtnVerify = (Button) findViewById(R.id.button7);
         progressBar = (ProgressBar) findViewById(R.id.progressBar2);
         mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
 
         mBtnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +136,7 @@ public class EmailAndPassActivity extends AppCompatActivity {
                                    }else if(role.equals("user")){
 
                                                DatabaseReference userRef = mDatabase.getReference().child("User").child(userID);
+
                                                userRef.child("Name").setValue(user.getName());
                                                userRef.child("ContactNo").setValue(user.getContactNo());
                                                userRef.child("Address").setValue(user.getAddr());
