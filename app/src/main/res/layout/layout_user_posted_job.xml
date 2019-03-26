@@ -166,6 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="27dp"
+                android:paddingTop="5dp"
                 android:text="Address:"
                 android:textColor="@color/teal_dark"
                 android:textSize="10sp" />

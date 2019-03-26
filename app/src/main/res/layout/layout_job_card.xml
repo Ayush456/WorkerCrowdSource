@@ -8,7 +8,7 @@
     <android.support.v7.widget.CardView
 
         android:layout_width="330dp"
-        android:layout_height="125dp"
+        android:layout_height="130dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -31,55 +31,213 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView33"
+                android:id="@+id/job_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:padding="4dp"
                 android:text="JobName"
-                android:textSize="14sp" />
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
             <MultiAutoCompleteTextView
-                android:id="@+id/multiAutoCompleteTextView"
+                android:id="@+id/job_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:maxLines="2"
-                android:text="Address"
-                android:ellipsize="end"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="10dp"
-                android:textSize="10sp"
-                />
+                android:clickable="false"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:padding="2dp"
+                android:text="Address"
+                android:textSize="10sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView37"
-                    android:layout_width="wrap_content"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
                     android:layout_weight="1"
-                    android:textSize="8dp"
-                    android:text="Job Provider" />
+                    android:paddingStart="10dp"
+                    android:text="Job Provider :"
+                    android:textSize="8sp" />
 
                 <TextView
-                    android:id="@+id/textView44"
+                    android:id="@+id/job_provider_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:textSize="10dp"
                     android:ellipsize="end"
-                    android:text="Job Provider's Name" />
+                    android:padding="2dp"
+                    android:text="Job Provider's Name"
+                    android:textSize="10dp" />
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="Distance :"
+                    android:textSize="8sp" />
+
+                <TextView
+                    android:id="@+id/job_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="Distance in Number"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="Worker Count :"
+                    android:textSize="8sp" />
+
+                <TextView
+                    android:id="@+id/job_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="count"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView45"
+                    android:layout_width="25dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="10dp"
+                    android:paddingTop="4dp"
+                    android:text="Enrolled :"
+                    android:textSize="8sp" />
+
+                <TextView
+                    android:id="@+id/job_enroll_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:padding="2dp"
+                    android:text="   Enrolled Count"
+                    android:textSize="8sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView49"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Start Date"
+                            android:textColor="@color/black"
+                            android:textSize="6sp" />
+
+                        <TextView
+                            android:id="@+id/job_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textColor="@color/teal_dark"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView51"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="End Date"
+                            android:textColor="@color/black"
+                            android:textSize="6sp" />
+
+                        <TextView
+                            android:id="@+id/job_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="4dp"
+                            android:text="TextView"
+                            android:textColor="@color/teal_dark"
+                            android:textSize="8sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="7dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="14sp"
+                    android:text="Salary :"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/job_salary"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="4dp"
+                    android:text="Salary Value"
+                    android:textColor="@color/gold1"
+                    android:textSize="10sp" />
+            </LinearLayout>
 
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>

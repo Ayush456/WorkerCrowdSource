@@ -7,20 +7,37 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class HomeActivity extends AppCompatActivity {
 
-
+    private TextView mJobName,mJobAddress,mJobProvider,mJobSalary,mJobStart,mJobEnd,mJobDistance,mJobEnroll,mJobWorkerCount;
+    private RecyclerView jobRecycler;
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // For easier finding of the layput and fields
+//        jobRecycler = findViewById(R.id.rc_rec_jobs);
+//        mJobName = findViewById(R.id.job_name);
+//        mJobAddress = findViewById(R.id.job_address);
+//        mJobProvider = findViewById(R.id.job_provider_name);
+//        mJobSalary = findViewById(R.id.job_salary);
+//        mJobStart = findViewById(R.id.job_start);
+//        mJobEnd = findViewById(R.id.job_end);
+//        mJobDistance = findViewById(R.id.job_enroll_count);
+//        mJobWorkerCount = findViewById(R.id.job_count);
+
+
+
 
        BottomNavigationView mBottomNav = findViewById(R.id.bottom_nav);
 
