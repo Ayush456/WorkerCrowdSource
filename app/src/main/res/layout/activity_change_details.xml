@@ -20,6 +20,7 @@
         app:srcCompat="@drawable/logo" />
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:layout_marginStart="8dp"
@@ -68,11 +69,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_marginStart="3dp"
-                android:padding="1dp"
-                android:background="@drawable/input_button"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="submit" />
+                android:background="@drawable/input_button"
+                android:padding="1dp"
+                android:text="submit"
+                android:textAllCaps="false" />
 
         </LinearLayout>
 
@@ -138,6 +139,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_marginStart="8dp"
@@ -186,15 +188,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_marginStart="3dp"
-                android:padding="1dp"
-                android:background="@drawable/input_button"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="submit" />
+                android:background="@drawable/input_button"
+                android:padding="1dp"
+                android:text="submit"
+                android:textAllCaps="false" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_marginStart="8dp"
@@ -207,7 +210,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.856">
+        app:layout_constraintVertical_bias="0.835">
 
         <TextView
             android:id="@+id/textView36"
@@ -243,11 +246,65 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_marginStart="3dp"
-                android:padding="1dp"
-                android:background="@drawable/input_button"
                 android:layout_weight="1"
-                android:textAllCaps="false"
-                android:text="submit" />
+                android:background="@drawable/input_button"
+                android:padding="1dp"
+                android:text="submit"
+                android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/alegreya_bold"
+            android:padding="4dp"
+            android:text="Change Address"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editText20"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/input_outline"
+                android:ems="10"
+                android:hint="Enter Address"
+                android:inputType="textPersonName"
+                android:padding="3dp"
+                android:paddingStart="8dp"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginStart="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/input_button"
+                android:padding="1dp"
+                android:text="submit"
+                android:textAllCaps="false" />
         </LinearLayout>
     </LinearLayout>
 

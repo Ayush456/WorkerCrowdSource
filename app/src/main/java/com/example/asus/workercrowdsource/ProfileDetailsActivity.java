@@ -36,9 +36,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
     private FirebaseAuth mAuthenticator;
     private FirebaseUser mUser;
     private Button msignout;
-    private ImageButton mChangeName,mChangeEmail,mChangeCity,mChangeContactNo;
+    private ImageButton mChangeName,mChangeEmail,mChangeCity,mChangeContactNo,mChangeAddress;
 
-    private TextView mName,mEmail,mContactNo,mCity;
+    private TextView mName,mEmail,mContactNo,mCity,mAddress;
     private ImageView mImage;
     private ProgressBar mProgress;
     @Override
@@ -56,6 +56,9 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         mChangeEmail = findViewById(R.id.imageButton4);
         mChangeContactNo = findViewById(R.id.imageButton3);
         mChangeCity = findViewById(R.id.imageButton2);
+        mChangeAddress = findViewById(R.id.imageButton6);
+        mAddress = findViewById(R.id.textView16);
+
 
 
         msignout = findViewById(R.id.button10);
@@ -81,9 +84,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         //Toast.makeText(ProfileDetailsActivity.this, mAllUser.toString() ,Toast.LENGTH_SHORT).show();
 
         mCurrentUser = mAllUser.child(UID);
-       // Toast.makeText(ProfileDetailsActivity.this, mCurrentUser.toString() ,Toast.LENGTH_SHORT).show();
-     //  final HashMap<String,String> allUsers = new HashMap<>();
-        mCurrentUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            mCurrentUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 AllUsers Thisuser = dataSnapshot.getValue(AllUsers.class);
@@ -92,6 +93,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
                 mName.setText(Thisuser.getName());
                 mContactNo.setText(Thisuser.getContactNo());
                 mCity.setText(Thisuser.getCity());
+                mAddress.setText(Thisuser.getAddress());
             }
 
             @Override
@@ -131,6 +133,13 @@ public class ProfileDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(ProfileDetailsActivity.this,ChangeDetailsActivity.class));
 
+            }
+        });
+
+        mChangeAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileDetailsActivity.this,ChangeDetailsActivity.class));
             }
         });
 

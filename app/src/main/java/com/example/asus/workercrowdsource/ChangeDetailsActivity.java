@@ -21,8 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.view.Change;
 
 public class ChangeDetailsActivity extends AppCompatActivity {
-    private EditText mEditName,mEditEmail,mEditContactNo,mEditCity;
-    private Button mSubmitName,mSubmitEmail,mSubmitContact,mSubmitCity;
+    private EditText mEditName,mEditEmail,mEditContactNo,mEditCity,mEditAddress;
+    private Button mSubmitName,mSubmitEmail,mSubmitContact,mSubmitCity,mSubmitAddress;
     private FirebaseDatabase mDatabase;
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
@@ -39,12 +39,15 @@ public class ChangeDetailsActivity extends AppCompatActivity {
         mEditEmail = findViewById(R.id.editText17);
         mEditContactNo = findViewById(R.id.editText18);
         mEditCity = findViewById(R.id.editText19);
+        mEditAddress = findViewById(R.id.editText20);
+
 
         //initializing all the buttons
         mSubmitName = findViewById(R.id.button14);
         mSubmitEmail = findViewById(R.id.button15);
         mSubmitContact = findViewById(R.id.button13);
         mSubmitCity = findViewById(R.id.button16);
+        mSubmitAddress = findViewById(R.id.button9);
 
         //initialzing auth
         mAuth =FirebaseAuth.getInstance();
@@ -309,6 +312,85 @@ public class ChangeDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+        mSubmitAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mAddress = mEditAddress.getText().toString().trim();
+
+                if (!mAddress.equalsIgnoreCase("")){
+
+                    if (role[0].equalsIgnoreCase("user")){
+                        mDatabase.getReference().child("User").child(user_id).child("Address").setValue(mAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(ChangeDetailsActivity.this,"Changed Address Successfully!",Toast.LENGTH_SHORT).show();
+                                    //startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class));
+
+                                }else {
+                                    Toast.makeText(ChangeDetailsActivity.this,"Error in Database Occurred!",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
+                                }
+                            }
+                        }) ;
+
+                        all_user.child(user_id).child("Address").setValue(mAddress);
+                        startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
+                    }
+                    if (role[0].equalsIgnoreCase("contractor")){
+                        mDatabase.getReference().child("Contractor").child(user_id).child("Address").setValue(mAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(ChangeDetailsActivity.this,"Changed Address Successfully!",Toast.LENGTH_SHORT).show();
+                                    //startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class));
+
+                                }else {
+                                    Toast.makeText(ChangeDetailsActivity.this,"Error in Database Occurred!",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
+                                }
+                            }
+                        }) ;
+
+                        all_user.child(user_id).child("Address").setValue(mAddress);
+                        startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
+
+
+                    }
+                    if (role[0].equalsIgnoreCase("worker")){
+                        mDatabase.getReference().child("Worker").child(user_id).child("Address").setValue(mAddress).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(ChangeDetailsActivity.this,"Changed Address Successfully!",Toast.LENGTH_SHORT).show();
+                                    //startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class));
+
+                                }else {
+                                    Toast.makeText(ChangeDetailsActivity.this,"Error in Database Occurred!",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
+                                }
+                            }
+                        }) ;
+
+                        all_user.child(user_id).child("Address").setValue(mAddress);
+                        startActivity(new Intent(ChangeDetailsActivity.this,ProfileDetailsActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
+                    }
+
+
+                }else{
+                    Toast.makeText(ChangeDetailsActivity.this,"Address is Empty",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
 
     }
 }
