@@ -26,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".UserDetailsActivity" />
         <activity android:name=".JobsActivity" />
         <activity android:name=".ProfilePictureActivity" />
@@ -37,11 +36,13 @@
         <activity android:name=".ContractorHomeActivity" />
         <activity android:name=".UserProvideJobsActivity" />
         <activity android:name=".ProfileDetailsActivity" />
-        <activity android:name=".ChangeDetailsActivity"></activity>
+        <activity android:name=".ChangeDetailsActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".ExpandedRecJobsActivity"></activity>
     </application>
 
 </manifest>

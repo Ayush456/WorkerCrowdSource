@@ -150,7 +150,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                                 }else{
 
                                     DatabaseReference pushPostKey = mCurrentUserPost.push();
-                                    pushPostKey.child("id").setValue(pushPostKey.toString());
+                                    pushPostKey.child("id").setValue(pushPostKey.getKey());
                                     pushPostKey.child("Job").setValue(jobsToPost);
                                     pushPostKey.child("Salary").setValue(salary);
                                     pushPostKey.child("StartDate").setValue(mStartDate);

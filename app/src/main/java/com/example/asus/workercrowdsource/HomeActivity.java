@@ -140,10 +140,11 @@ public class HomeActivity extends AppCompatActivity {
 
 
         UserPostedJobs.addChildEventListener(new ChildEventListener() {
+
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 if (dataSnapshot.hasChildren()){
-                    filteredJobs.clear();
+
                     for (DataSnapshot dss : dataSnapshot.getChildren()){
                         final PostJobsObject postJobsObject = dss.getValue(PostJobsObject.class);
 
@@ -157,7 +158,8 @@ public class HomeActivity extends AppCompatActivity {
 
                             }
                         }
-                    }else{
+                    }
+                    else{
                         String start = String.valueOf(Job1.charAt(0));
                         if (postJobsObject.getJob().startsWith(start)){
                             filteredJobs.add(postJobsObject);
@@ -168,6 +170,7 @@ public class HomeActivity extends AppCompatActivity {
                             }
                         }
                     }
+
 
 
                     }
