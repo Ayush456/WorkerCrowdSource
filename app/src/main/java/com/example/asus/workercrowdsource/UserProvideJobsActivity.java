@@ -35,7 +35,6 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
     String item="";
     private FirebaseDatabase mDB = FirebaseDatabase.getInstance();
     private FirebaseAuth mAu = FirebaseAuth.getInstance();
-    private ProgressBar MprogressBar;
     private int sDay,sMonth,sYear,eDay,eMonth,eYear;
     Calendar calendar;
 
@@ -52,8 +51,6 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
         mSalary = findViewById(R.id.editText12);
         mPost = findViewById(R.id.button12);
         mEstWorker = findViewById(R.id.editText15);
-        MprogressBar = (ProgressBar)findViewById(R.id.progressBar5);
-        MprogressBar.setVisibility(View.INVISIBLE);
         mAddress = findViewById(R.id.editText13);
 
 
@@ -77,7 +74,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
        final String userId = mCurrentUser.getUid();
        final DatabaseReference mUserPostJobs = mDB.getReference().child("USER_POST_JOBS");
        final DatabaseReference mCurrentUserPost = mUserPostJobs.child(userId);
-       FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
 
        mStart.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -151,7 +148,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                                 if (mStartDate.equals("") || mEndDate.equals("")){
                                     Toast.makeText(UserProvideJobsActivity.this,"Start Or End Date is Missing",Toast.LENGTH_SHORT).show();
                                 }else{
-                                    MprogressBar.setVisibility(View.VISIBLE);
+
                                     DatabaseReference pushPostKey = mCurrentUserPost.push();
                                     pushPostKey.child("Job").setValue(jobsToPost);
                                     pushPostKey.child("Salary").setValue(salary);
@@ -159,7 +156,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                                     pushPostKey.child("EndDate").setValue(mEndDate);
                                     pushPostKey.child("Address").setValue(Address);
                                     pushPostKey.child("EstNoOfWorker").setValue(NoOfWorker);
-                                    MprogressBar.setVisibility(View.INVISIBLE);
+
                                     Intent userHomeIntent = new Intent(UserProvideJobsActivity.this,UserHomeActivity.class);
                                     userHomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(userHomeIntent);

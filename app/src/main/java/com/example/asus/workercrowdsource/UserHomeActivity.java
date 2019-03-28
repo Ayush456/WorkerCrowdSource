@@ -57,8 +57,11 @@ public class UserHomeActivity extends AppCompatActivity {
         mBottomNav.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
-               if (menuItem.getItemId() ==R.id.post_userjob ){
-                    startActivity(new Intent(UserHomeActivity.this,UserProvideJobsActivity.class));
+               if (menuItem.getItemId() == R.id.post_userjob ){
+
+                   Intent intent = new Intent(UserHomeActivity.this,UserProvideJobsActivity.class);
+                   startActivity(intent);
+
                }else if(menuItem.getItemId() == R.id.view_userjob){
 
 

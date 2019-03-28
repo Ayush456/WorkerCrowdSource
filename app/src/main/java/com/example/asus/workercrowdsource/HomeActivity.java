@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
              if (menuItem.getItemId() == R.id.view_recommended_job){
 
-
+                 startActivity(new Intent(HomeActivity.this,HomeActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
              }else if(menuItem.getItemId() == R.id.view_contractors){
 
