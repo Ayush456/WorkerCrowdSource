@@ -162,9 +162,7 @@ public class MainActivity extends AppCompatActivity {
       mAuth = FirebaseAuth.getInstance();
       FirebaseUser muser = mAuth.getCurrentUser();
 
-
-
-      if (muser!=null){
+      if (muser != null){
 
           if (muser.isEmailVerified()){
               mprogressBar.setVisibility(View.VISIBLE);

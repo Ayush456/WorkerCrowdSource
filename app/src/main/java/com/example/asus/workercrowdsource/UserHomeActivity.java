@@ -102,7 +102,7 @@ public class UserHomeActivity extends AppCompatActivity {
               holder.mView.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
-                      Toast.makeText(UserHomeActivity.this, post_parent,Toast.LENGTH_LONG ).show();
+                      Toast.makeText(UserHomeActivity.this, post_key,Toast.LENGTH_LONG ).show();
                   }
               });
 

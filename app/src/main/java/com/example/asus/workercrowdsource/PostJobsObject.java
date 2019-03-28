@@ -1,7 +1,7 @@
 package com.example.asus.workercrowdsource;
 
 public class PostJobsObject {
-
+    private String id;
     private String Address;
     private String EndDate;
     private String StartDate;
