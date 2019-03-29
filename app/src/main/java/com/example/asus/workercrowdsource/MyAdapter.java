@@ -50,13 +50,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
 
         //complex stuffs
         myAdapterViewHolder.setJobProviderName(post.getId());
-
+        myAdapterViewHolder.setWorkersEnrolled(post.getId());
 
         //onclick on the card
         myAdapterViewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(myAdapterViewHolder.view.getContext(),post.getId(),Toast.LENGTH_SHORT).show();
+               // Toast.makeText(myAdapterViewHolder.view.getContext(),post.getId(),Toast.LENGTH_SHORT).show();
                 Intent expandedRecJobs = new Intent(myAdapterViewHolder.view.getContext(),ExpandedRecJobsActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("PostId",post.getId());
@@ -65,6 +65,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
                 bundle.putString("StartDate",post.getStartDate());
                 bundle.putString("EndDate",post.getEndDate());
                 bundle.putString("NoOfWorker",post.getEstNoOfWorker());
+                bundle.putString("Address",post.getAddress());
                 expandedRecJobs.putExtras(bundle);
                 ctx.startActivity(expandedRecJobs);
             }
@@ -159,6 +160,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
 
         }
         public void setWorkersEnrolled(String JobUid){
+            FirebaseDatabase.getInstance().getReference().child("Worker_EnrolledTo_Post").child(JobUid).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    long Count = dataSnapshot.getChildrenCount();
+
+
+                    TextView postEnrollmentCount = view.findViewById(R.id.job_enroll_count);
+                    postEnrollmentCount.setText(""+Count);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
 
         }
     }
