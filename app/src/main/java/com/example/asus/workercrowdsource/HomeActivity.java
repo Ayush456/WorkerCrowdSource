@@ -137,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
         //Query q = UserPostedJobs.orderByChild("Job").equalTo(Job1);
         //Query q2 = UserPostedJobs.orderByChild("Job").equalTo(Job2);
 
-
+        filteredJobs.clear();
 
         UserPostedJobs.addChildEventListener(new ChildEventListener() {
 
