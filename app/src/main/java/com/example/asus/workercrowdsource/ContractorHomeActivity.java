@@ -22,17 +22,20 @@ public class ContractorHomeActivity extends AppCompatActivity {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.post_contractorjob){
-
+                  startActivity(new Intent(ContractorHomeActivity.this,ContractorPostJobs.class));
                 }else if (menuItem.getItemId() == R.id.view_contractorjob){
 
+                }else if((menuItem.getItemId() == R.id.view_workerrequests)){
+                    startActivity(new Intent(ContractorHomeActivity.this,DisplayContractorRequests.class));
+
+                }else if((menuItem.getItemId() ==R.id.view_myworkers)){
+                    startActivity(new Intent(ContractorHomeActivity.this,EnrolledWorkersActivity.class));
                 }else{
                     startActivity(new Intent(ContractorHomeActivity.this,ProfileDetailsActivity.class));
                 }
 
             }
         });
-
-
 
     }
 

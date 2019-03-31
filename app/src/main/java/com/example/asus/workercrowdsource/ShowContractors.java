@@ -1,11 +1,15 @@
 package com.example.asus.workercrowdsource;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,11 +21,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ShowContractors extends AppCompatActivity {
 
     private RecyclerView contractors;
-
     private DatabaseReference mDatabase;
+    BottomNavigationView mbottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,21 @@ public class ShowContractors extends AppCompatActivity {
         contractors = (RecyclerView) findViewById(R.id.contractor_list);
         contractors.setHasFixedSize(true);
         contractors.setLayoutManager(new LinearLayoutManager(this));
+        mbottomNav = findViewById(R.id.bottom_nav3);
+
+        mbottomNav.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.view_recommended_job){
+                    startActivity(new Intent(ShowContractors.this,HomeActivity.class));
+
+                }else if(menuItem.getItemId() == R.id.view_profile){
+                       startActivity(new Intent(ShowContractors.this,ProfileDetailsActivity.class));
+                }else{
+
+                }
+            }
+        });
 
     }
 
@@ -47,63 +68,59 @@ public class ShowContractors extends AppCompatActivity {
 
         FirebaseRecyclerAdapter<Contractor, ContractorViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Contractor, ContractorViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ContractorViewHolder holder, int position, @NonNull Contractor model) {
+            protected void onBindViewHolder(@NonNull ContractorViewHolder holder, final int position, @NonNull Contractor model) {
 
-                holder.setName(model.getName());
-                holder.setContactNo(model.getContactNo());
-                holder.setCity(model.getCity());
-                holder.setPPLink(getApplicationContext(),model.getPPLink());
+                holder.name.setText(model.getName());
+                holder.contact.setText(model.getContactNo());
+                holder.address.setText(model.getAddress());
+                holder.city.setText(model.getCity());
+                holder.email.setText(model.getUsername());
+                Picasso.get().load(model.getPPLink()).into(holder.profileimage);
 
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String Contractor_id = getRef(position).getKey();
+
+                        Intent contractorenhanced = new Intent(ShowContractors.this,ContractorEnhancedActivity.class);
+                        contractorenhanced.putExtra("contractor_id",Contractor_id);
+                        startActivity(contractorenhanced);
+
+                    }
+                });
             }
 
             @NonNull
             @Override
             public ContractorViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                return null;
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.contractor_row,viewGroup,false);
+                ContractorViewHolder viewHolder = new ContractorViewHolder(view);
+                return viewHolder;
             }
         };
 
         contractors.setAdapter(firebaseRecyclerAdapter);
-
+        firebaseRecyclerAdapter.startListening();
     }
 
     public static class ContractorViewHolder extends RecyclerView.ViewHolder{
 
-        View mView;
+        TextView name,contact,address,city,email;
+        CircleImageView profileimage;
 
         public ContractorViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mView = itemView;
-        }
-
-        public void setName(String Name){
-
-            TextView post_name = (TextView) mView.findViewById(R.id.show_name);
-            post_name.setText(Name);
-
-        }
-
-        public void setContactNo(String ContactNo){
-
-            TextView post_contact = (TextView) mView.findViewById(R.id.show_contact);
-            post_contact.setText(ContactNo);
+            name = itemView.findViewById(R.id.show_name);
+            contact = itemView.findViewById(R.id.show_contact);
+            address = itemView.findViewById(R.id.show_address);
+            city = itemView.findViewById(R.id.show_city);
+            email = itemView.findViewById(R.id.show_email);
+            profileimage = itemView.findViewById(R.id.contractor_image);
 
         }
 
 
-        public void setCity(String City){
 
-            TextView post_location = (TextView) mView.findViewById(R.id.show_location);
-            post_location.setText(City);
-
-        }
-
-        public void setPPLink(Context ctx, String PPLink){
-
-            ImageView post_image = (ImageView) mView.findViewById(R.id.contractor_image);
-          //  Picasso.with(ctx).load(PPLink).into(post_image);
-
-        }
     }
 }

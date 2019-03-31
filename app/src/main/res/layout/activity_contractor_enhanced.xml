@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContractorEnhancedActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cont_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/profile" />
+
+    <TextView
+        android:id="@+id/contr_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contractor Name"
+        android:layout_below="@+id/cont_image"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/contr_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contractor Contact"
+        android:layout_below="@+id/contr_name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+
+
+    <TextView
+        android:id="@+id/contr_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contractor Address"
+        android:layout_below="@+id/contr_contact"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/contr_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contractor City"
+        android:layout_below="@+id/contr_address"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/contr_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contractor Email "
+        android:layout_below="@+id/contr_city"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+
+    <Button
+        android:id="@+id/enroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contr_email"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="65dp"
+        android:text="Enroll for this Contractor"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        />
+
+
+</RelativeLayout>

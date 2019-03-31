@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowContractors">
-
+    tools:context=".EnrolledWorkersActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,10 +15,9 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/enrolled_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/contractor_list"
-            />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
@@ -30,8 +28,9 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom_navigation">
+        app:menu="@menu/contractor_bottom_nav">
 
     </android.support.design.widget.BottomNavigationView>
+
 
 </android.support.constraint.ConstraintLayout>

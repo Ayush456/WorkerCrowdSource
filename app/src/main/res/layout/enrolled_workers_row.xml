@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     >
 
-
     <android.support.v7.widget.CardView
         android:layout_width="330dp"
         android:layout_height="125dp"
@@ -30,7 +29,7 @@
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/contractor_image"
+                    android:id="@+id/enrolled_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="10dp"
@@ -63,7 +62,7 @@
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/show_name"
+                        android:id="@+id/enrolled_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="4dp"
@@ -86,18 +85,18 @@
                         android:padding="4dp"
                         android:paddingStart="10dp"
                         android:paddingEnd="2dp"
-                        android:text="Email"
+                        android:text="Job"
                         android:textColor="@color/best_blue"
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/show_email"
+                        android:id="@+id/enrolled_profession"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="4dp"
                         android:paddingStart="10dp"
                         android:paddingEnd="2dp"
-                        android:text="Email_ID"
+                        android:text="Profession"
                         android:textColor="@color/black"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -119,7 +118,7 @@
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/show_contact"
+                        android:id="@+id/enrolled_contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="4dp"
@@ -148,7 +147,7 @@
                         android:textSize="9sp" />
 
                     <TextView
-                        android:id="@+id/show_address"
+                        android:id="@+id/enrolled_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -177,7 +176,7 @@
                         android:textSize="9sp" />
 
                     <TextView
-                        android:id="@+id/show_city"
+                        android:id="@+id/enrolled_city"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"

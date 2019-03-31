@@ -14,6 +14,18 @@
         android:icon="@drawable/contractor"
 
         />
+
+    <item android:id="@+id/view_workerrequests"
+        android:enabled="true"
+        android:title="Request"
+        android:icon="@drawable/requests"
+        />
+
+    <item android:id="@+id/view_myworkers"
+        android:enabled="true"
+        android:title="Enrolled Workers"
+        android:icon="@drawable/people"/>
+
     <item
         android:id="@+id/view_contractorprofile"
         android:enabled="true"

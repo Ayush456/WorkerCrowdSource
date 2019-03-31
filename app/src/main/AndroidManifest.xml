@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UserDetailsActivity" />
+        <activity android:name=".ShowContractors" />
         <activity android:name=".JobsActivity" />
         <activity android:name=".ProfilePictureActivity" />
         <activity android:name=".HomeActivity" />
@@ -42,7 +43,14 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ExpandedRecJobsActivity"></activity>
+        <activity android:name=".ExpandedRecJobsActivity" />
+        <activity android:name=".RBMActivity" />
+        <activity android:name=".ContractorPostJobs" />
+        <activity android:name=".DisplayContractorRequests" />
+        <activity android:name=".ContractorEnhancedActivity" />
+        <activity android:name=".CheckActivity" />
+        <activity android:name=".EnrolledWorkerJobs" />
+        <activity android:name=".EnrolledWorkersActivity"></activity>
     </application>
 
 </manifest>

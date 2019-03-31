@@ -70,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
 
              }else if(menuItem.getItemId() == R.id.view_contractors){
 
-                 //startActivity(new Intent(HomeActivity.this,ShowContractors.class));
+                 startActivity(new Intent(HomeActivity.this,CheckActivity.class));
 
              }else{
                  startActivity(new Intent(HomeActivity.this,ProfileDetailsActivity.class));

@@ -4,26 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowContractors">
-
+    tools:context=".EnrolledWorkerJobs">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="479dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_nav3"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/contractor_list"
+            android:id="@+id/display_enrolled_jobs"
             />
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_nav3"
+        android:id="@+id/bottom_nav4"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         app:itemBackground="@color/colorPrimaryDark"
@@ -33,5 +32,6 @@
         app:menu="@menu/menu_bottom_navigation">
 
     </android.support.design.widget.BottomNavigationView>
+
 
 </android.support.constraint.ConstraintLayout>
