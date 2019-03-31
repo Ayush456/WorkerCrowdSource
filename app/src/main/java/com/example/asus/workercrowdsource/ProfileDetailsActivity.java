@@ -58,14 +58,12 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         mChangeCity = findViewById(R.id.imageButton2);
         mChangeAddress = findViewById(R.id.imageButton6);
         mAddress = findViewById(R.id.textView16);
-
-
-
         msignout = findViewById(R.id.button10);
 //        mProgress = findViewById(R.id.progressBar4);
 //        mProgress.setVisibility(View.INVISIBLE);
 
         mAuthenticator = FirebaseAuth.getInstance();
+        String UID = mAuthenticator.getUid();
 
         msignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,15 +74,21 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         });
 
         mDB = FirebaseDatabase.getInstance();
-        String UID = mAuthenticator.getUid();
-      //  String url;
-        //Toast.makeText(ProfileDetailsActivity.this,UID,Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         mAllUser = mDB.getReference().child("ALL_USERS");
         //Toast.makeText(ProfileDetailsActivity.this, mAllUser.toString() ,Toast.LENGTH_SHORT).show();
+        mAuthenticator = FirebaseAuth.getInstance();
+        String UID = mAuthenticator.getUid();
 
         mCurrentUser = mAllUser.child(UID);
-            mCurrentUser.addListenerForSingleValueEvent(new ValueEventListener() {
+        mCurrentUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 AllUsers Thisuser = dataSnapshot.getValue(AllUsers.class);
@@ -108,7 +112,7 @@ public class ProfileDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-             startActivity(new Intent(ProfileDetailsActivity.this,ChangeDetailsActivity.class));
+                startActivity(new Intent(ProfileDetailsActivity.this,ChangeDetailsActivity.class));
             }
         });
 
@@ -144,6 +148,4 @@ public class ProfileDetailsActivity extends AppCompatActivity {
         });
 
     }
-
-
 }

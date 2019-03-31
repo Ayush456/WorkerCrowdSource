@@ -86,6 +86,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
                        month = month+1;
+                       sDay = dayOfMonth;sMonth = month+1;sYear = year;
                        mStartDate = dayOfMonth+"/"+month+"/"+year;
                        mStart.setText(dayOfMonth+"/"+month+"/"+year);
 
@@ -105,6 +106,7 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         month = month+1;
+                        eDay = dayOfMonth;eMonth = month+1;eYear = year;
                         mEndDate = dayOfMonth+"/"+month+"/"+year;
                         mEnd.setText(dayOfMonth+"/"+month+"/"+year);
 
@@ -137,8 +139,8 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                         mSalary.setError("Salary cannot be Null");
                         mSalary.requestFocus();
                     }else {
-                        if (NoOfWorker.equals("")){
-                            mEstWorker.setError("No of workers expected cannot be null");
+                        if (NoOfWorker.equals("") || NoOfWorker.length()>4 ){
+                            mEstWorker.setError("Field either null or a very big value");
                             mEstWorker.requestFocus();
                         }else {
                             if (Address.equals("")){
@@ -149,18 +151,29 @@ public class UserProvideJobsActivity extends AppCompatActivity implements Adapte
                                     Toast.makeText(UserProvideJobsActivity.this,"Start Or End Date is Missing",Toast.LENGTH_SHORT).show();
                                 }else{
 
-                                    DatabaseReference pushPostKey = mCurrentUserPost.push();
-                                    pushPostKey.child("id").setValue(pushPostKey.getKey());
-                                    pushPostKey.child("Job").setValue(jobsToPost);
-                                    pushPostKey.child("Salary").setValue(salary);
-                                    pushPostKey.child("StartDate").setValue(mStartDate);
-                                    pushPostKey.child("EndDate").setValue(mEndDate);
-                                    pushPostKey.child("Address").setValue(Address);
-                                    pushPostKey.child("EstNoOfWorker").setValue(NoOfWorker);
+                                    if(salary.length() > 4){
+                                      Toast.makeText(UserProvideJobsActivity.this,"Salary Cannot be greater than 4 digits",Toast.LENGTH_SHORT).show();
+                                      mSalary.requestFocus();
+                                    }else{
+                                       if( (sDay>eDay && sMonth >= eMonth ) ){
+                                           Toast.makeText(UserProvideJobsActivity.this,"Date Invalid!",Toast.LENGTH_SHORT).show();
+                                       }else{
+                                           DatabaseReference pushPostKey = mCurrentUserPost.push();
+                                           pushPostKey.child("id").setValue(pushPostKey.getKey());
+                                           pushPostKey.child("Job").setValue(jobsToPost);
+                                           pushPostKey.child("Salary").setValue(salary);
+                                           pushPostKey.child("StartDate").setValue(mStartDate);
+                                           pushPostKey.child("EndDate").setValue(mEndDate);
+                                           pushPostKey.child("Address").setValue(Address);
+                                           pushPostKey.child("EstNoOfWorker").setValue(NoOfWorker);
 
-                                    Intent userHomeIntent = new Intent(UserProvideJobsActivity.this,UserHomeActivity.class);
-                                    userHomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(userHomeIntent);
+                                           Intent userHomeIntent = new Intent(UserProvideJobsActivity.this,UserHomeActivity.class);
+                                           userHomeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                           startActivity(userHomeIntent);
+                                       }
+
+
+                                    }
 
                                 }
                             }
