@@ -3,6 +3,7 @@ package com.example.asus.workercrowdsource;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.provider.ContactsContract;
@@ -284,6 +285,8 @@ public class MainActivity extends AppCompatActivity {
             setLocale("hi");
             Toast.makeText(this, "Locale in English !", Toast.LENGTH_LONG).show();
             return true;
+
+
         }
         if (id == R.id.marathi){
             Locale locale = new Locale("mr");
@@ -317,5 +320,16 @@ public class MainActivity extends AppCompatActivity {
         finish();
         startActivity(refresh);
 
+    }
+    private static boolean updateResources(Context context, String language) {
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+
+        Resources resources = context.getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = locale;
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+        return true;
     }
 }

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WorkerCrowdSource</string>
+        <string name="login">लॉगिन</string>
+    <string name="signup">साइन अप करें</string>
+    <string name="new_user">नया उपयोगकर्ता?</string>
+    <string name="forgot_password">पासवर्ड भूल गए</string>
+    <string name="username">उपयोगकर्ता नाम</string>
+    <string name="password">पारण शब्द</string>
+    <string name="user_details_title">कृपया अपना व्यक्तिगत विवरण दर्ज करें</string>
+    <string name="name">नाम</string>
+    <string name="contact">संपर्क नंबर</string>
+    <string name="address">डाक पता</string>
+    <string name="city">शहर</string>
+    <string name="pincode">पिन कोड</string>
+    <string name="select_role">अपनी भूमिका का चयन करें</string>
+    <string name="worker">मज़दूर</string>
+    <string name="contractor">ठेकेदार</string>
+    <string name="job_user">नौकरी उपयोगकर्ता</string>
+    <string name="submit">जमा करें</string>
+    <string name="text_upload_profile_pic">अपना प्रोफ़ाइल चित्र अपलोड करें</string>
+    <string name="save_picture">पिक्चर को सेव करना</string>
+    <string name="email_id">ईमेल आईडी</string>
+    <string name="reenter_password">पासवर्ड फिर से दर्ज करें</string>
+    <string name="verify">सत्यापित करें</string>
+    <string name="enter_email_pass">ईमेल और पासवर्ड दर्ज करें</string>
+    <string name="change_name">नाम परिवर्तित करें</string>
+    <string name="change_email">ई - मेल बदलें</string>
+    <string name="change_address">पता बदल जाना</string>
+    <string name="change_contact">संपर्क बदलें</string>
+    <string name="change_city">शहर बदलें</string>
+
+    <string name="enter_name">नाम दर्ज</string>
+    <string name="enter_email">ईमेल दर्ज करें</string>
+    <string name="enter_address">पता लिखिए</string>
+    <string name="enter_contact">संपर्क नंबर दर्ज करें</string>
+    <string name="enter_city">शहर का नाम दर्ज करें</string>
+
+    <string name="contractor_name">ठेकेदार का नाम</string>
+    <string name="contractor_address">ठेकेदार का पता</string>
+    <string name="contractor_email">ठेकेदार का ईमेल</string>
+
+    <string name="enter_job_desc">अपनी नौकरी का विवरण दर्ज करें</string>
+    <string name="enter_job_name">नौकरी का नाम दर्ज करें</string>
+    <string name="enter_custom_job">कस्टम जॉब दर्ज करें</string>
+    <string name="choose_start">प्रारंभ दिनांक चुनें</string>
+    <string name="choose_end">अंतिम तिथि चुनें</string>
+    <string name="enter_custom_job_here">कस्टम जॉब दर्ज करें</string>
+    <string name="est_no_worker">कार्यकर्ता की अनुमानित संख्या</string>
+    <string name="enter_job_address">नौकरी का पता दर्ज करें</string>
+    <string name="salary">वेतन (प्रति दिन)</string>
+
+    <string name="job_provider">नौकरी देने वाला  :</string>
+    <string name="address2">पता    :</string>
+    <string name="job_title">नौकरी का नाम  :</string>
+    <string name="salary2">वेतन   :</string>
+    <string name="No_of_interested_worker">इच्छुक कार्यकर्ता की नहीं</string>
+    <string name="choose_startdate">प्रारंभ चुनें</string>
+    <string name="choose_enddate">अंत चुनें</string>
+
+    <string name="enter_job1">एक काम दर्ज करें</string>
+    <string name="enter_job2">दूसरी नौकरी डालें</string>
+    <string name="enter_job3">तीसरा काम दर्ज करें</string>
+
+    <string name="address3">पता</string>
+    <string name="distance">दूरी :</string>
+    <string name="enrolled">दाखिला लिया :</string>
+    <string name="start_date">आरंभ तिथि:</string>
+    <string name="end_date">अंतिम तिथि:</string>
+    <string name="worker_count">कार्यकर्ता की गिनती:</string>
+    <string name="post_btn">भेजें</string>
+    <string name="jobs">नौकरियां</string>
+    <string name="contact2">संपर्क करें</string>
+
+    <string name="post_job">नौकरी पोस्ट करें</string>
+    <string name="view_job">नौकरी देखें</string>
+    <string name="my_profile">मेरी प्रोफाइल</string>
+    <string name="enrolled_worker">नामांकित कार्यकर्ता</string>
+    <string name="request">निवेदन</string>
+    <string name="recommended_job">सिफारिश की नौकरी</string>
+    <string name="interested">रुचि</string>
+    <string name="contractors">ठेकेदार</string>
+</resources>
