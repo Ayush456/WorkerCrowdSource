@@ -8,13 +8,20 @@
         android:title="RC JOBS"
         android:icon="@drawable/jobsearch"
         />
+
+    <item
+        android:id="@+id/view_workers_interested_jobs"
+        android:enabled="true"
+        android:title="INTERESTED"
+        android:icon="@drawable/myinterest"
+        />
     <item
         android:id="@+id/view_contractors"
         android:enabled="true"
         android:title="CONTRACTORS"
         android:icon="@drawable/contractor"
-
         />
+
     <item
         android:id="@+id/view_profile"
         android:enabled="true"

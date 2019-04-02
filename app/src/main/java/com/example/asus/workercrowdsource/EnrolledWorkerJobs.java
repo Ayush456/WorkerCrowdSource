@@ -2,11 +2,13 @@ package com.example.asus.workercrowdsource;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,7 +22,7 @@ public class EnrolledWorkerJobs extends AppCompatActivity {
     private String contractor_id;
     private RecyclerView enrolledjobs;
     private DatabaseReference jobs;
-
+    private BottomNavigationView mBottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,22 @@ public class EnrolledWorkerJobs extends AppCompatActivity {
         enrolledjobs.setLayoutManager(new LinearLayoutManager(this));
 
         jobs = FirebaseDatabase.getInstance().getReference().child("CONTRACTOR_POST_JOBS").child(contractor_id);
+        mBottomNav = findViewById(R.id.bottom_nav4);
+        mBottomNav.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.view_recommended_job){
+                    startActivity(new Intent(EnrolledWorkerJobs.this,HomeActivity.class));
+
+                }else if(menuItem.getItemId() == R.id.view_workers_interested_jobs){
+                    startActivity(new Intent(EnrolledWorkerJobs.this,InterestedJobsActivity.class));
+                }else if(menuItem.getItemId() == R.id.view_contractors){
+                    //startActivity(new Intent(EnrolledWorkerJobs.this,));
+                }else{
+                    startActivity(new Intent(EnrolledWorkerJobs.this,ProfileDetailsActivity.class));
+                }
+            }
+        });
 
     }
 

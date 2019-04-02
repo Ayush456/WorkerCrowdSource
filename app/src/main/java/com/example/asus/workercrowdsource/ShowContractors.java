@@ -27,7 +27,7 @@ public class ShowContractors extends AppCompatActivity {
 
     private RecyclerView contractors;
     private DatabaseReference mDatabase;
-    BottomNavigationView mbottomNav;
+    private BottomNavigationView mbottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +47,12 @@ public class ShowContractors extends AppCompatActivity {
                 if (menuItem.getItemId() == R.id.view_recommended_job){
                     startActivity(new Intent(ShowContractors.this,HomeActivity.class));
 
-                }else if(menuItem.getItemId() == R.id.view_profile){
-                       startActivity(new Intent(ShowContractors.this,ProfileDetailsActivity.class));
-                }else{
+                }else if(menuItem.getItemId() == R.id.view_workers_interested_jobs){
+                    startActivity(new Intent(ShowContractors.this,InterestedJobsActivity.class));
+                }else if(menuItem.getItemId() == R.id.view_contractors){
 
+                }else{
+                    startActivity(new Intent(ShowContractors.this,ProfileDetailsActivity.class));
                 }
             }
         });

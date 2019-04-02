@@ -53,12 +53,12 @@ public class ExpandedRecJobsActivity extends AppCompatActivity {
 
         Bundle prevBundle = getIntent().getExtras();
         final String id = prevBundle.getString("PostId");
-        String Sal = prevBundle.getString("Salary");
-        String startDate = prevBundle.getString("StartDate");
-        String endDate = prevBundle.getString("EndDate");
-        String count = prevBundle.getString("NoOfWorker");
-        String Addr = prevBundle.getString("Address");
-        String jobName = prevBundle.getString("JobName");
+        final String Sal = prevBundle.getString("Salary");
+        final String startDate = prevBundle.getString("StartDate");
+        final String endDate = prevBundle.getString("EndDate");
+        final String count = prevBundle.getString("NoOfWorker");
+        final String Addr = prevBundle.getString("Address");
+        final String jobName = prevBundle.getString("JobName");
         postId = prevBundle.getString("PostId");
 
         mNoWorkerInterested.setText(count);
@@ -92,8 +92,8 @@ public class ExpandedRecJobsActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 AllUsers user = dataSnapshot.getValue(AllUsers.class);
-                               mProvider.setText(user.getName());
-                               Picasso.get().load(Uri.parse(user.getPPLink())).fit().into(mImage);
+                                mProvider.setText(user.getName());
+                                Picasso.get().load(Uri.parse(user.getPPLink())).fit().into(mImage);
 
                             }
 
@@ -119,8 +119,19 @@ public class ExpandedRecJobsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Worker_EnrolledTo_Post = FirebaseDatabase.getInstance().getReference().child("Worker_EnrolledTo_Post");
-                Worker_EnrolledTo_Post.child(postId).child(mCurrentUid).setValue(mCurrentUid);
-                Toast.makeText(ExpandedRecJobsActivity.this,"Interest MArked!",Toast.LENGTH_SHORT).show();
+//                Worker_EnrolledTo_Post.child(postId).child(mCurrentUid).setValue("0");
+//                Toast.makeText(ExpandedRecJobsActivity.this,"Interest Marked!",Toast.LENGTH_SHORT).show();
+
+                DatabaseReference UserInterestedToPosts = Worker_EnrolledTo_Post.child(postId).child(mCurrentUid);
+                UserInterestedToPosts.child("Address").setValue(Addr);
+                UserInterestedToPosts.child("StartDate").setValue(startDate);
+                UserInterestedToPosts.child("EndDate").setValue(endDate);
+                UserInterestedToPosts.child("JobName").setValue(jobName);
+                UserInterestedToPosts.child("Salary").setValue(Sal);
+                UserInterestedToPosts.child("EstNoOfWorker").setValue(count);
+                UserInterestedToPosts.child("id").setValue("0");
+                Toast.makeText(ExpandedRecJobsActivity.this,"Interest Marked!",Toast.LENGTH_SHORT).show();
+
             }
         });
 

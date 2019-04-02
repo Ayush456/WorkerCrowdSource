@@ -165,7 +165,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     long Count = dataSnapshot.getChildrenCount();
 
-
                     TextView postEnrollmentCount = view.findViewById(R.id.job_enroll_count);
                     postEnrollmentCount.setText(""+Count);
                 }

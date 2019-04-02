@@ -39,11 +39,11 @@ public class CheckActivity extends AppCompatActivity {
 
                         Intent enrolledjobs = new Intent(CheckActivity.this,EnrolledWorkerJobs.class);
                         enrolledjobs.putExtra("contractor_id",current_contractor_id);
-                        startActivity(enrolledjobs);
+                        startActivity(enrolledjobs.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
 
                     }
                     else{
-                        startActivity(new Intent(CheckActivity.this,ShowContractors.class));
+                        startActivity(new Intent(CheckActivity.this,ShowContractors.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     }
                 }
             }

@@ -242,6 +242,16 @@
                     android:text="Salary Value"
                     android:textColor="@color/gold1"
                     android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
+                    android:textSize="10sp"
+                    android:visibility="invisible"
+                    android:gravity="end"
+                    android:text="status" />
             </LinearLayout>
 
         </LinearLayout>

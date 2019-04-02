@@ -50,7 +50,9 @@
         <activity android:name=".ContractorEnhancedActivity" />
         <activity android:name=".CheckActivity" />
         <activity android:name=".EnrolledWorkerJobs" />
-        <activity android:name=".EnrolledWorkersActivity"></activity>
+        <activity android:name=".EnrolledWorkersActivity" />
+        <activity android:name=".InterestedJobsActivity" />
+        <activity android:name=".PostContractorJobs"></activity>
     </application>
 
 </manifest>
