@@ -17,7 +17,7 @@
         android:fontFamily="@font/aladin"
         android:gravity="center"
         android:paddingTop="2dp"
-        android:text="Please Enter your user details"
+        android:text="@string/user_details_title"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimaryDark"
 
@@ -53,7 +53,7 @@
             android:ems="10"
 
             android:gravity="center"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="textPersonName"
             android:padding="5dp" />
 
@@ -65,7 +65,7 @@
             android:background="@drawable/input_outline"
             android:ems="10"
             android:gravity="center"
-            android:hint="Contact"
+            android:hint="@string/contact"
             android:inputType="number"
             android:maxLength="10"
             android:padding="5dp" />
@@ -78,7 +78,7 @@
             android:background="@drawable/input_outline"
             android:ems="10"
             android:gravity="center"
-            android:hint="Postal Address"
+            android:hint="@string/address"
             android:inputType="textPostalAddress|textMultiLine"
             android:maxLines="3"
             android:minLines="1"
@@ -93,7 +93,7 @@
             android:background="@drawable/input_outline"
             android:ems="10"
             android:gravity="center"
-            android:hint="City"
+            android:hint="@string/city"
             android:inputType="textPersonName"
             android:padding="6dp" />
 
@@ -105,7 +105,7 @@
             android:background="@drawable/input_outline"
             android:ems="10"
             android:gravity="center"
-            android:hint="Pincode"
+            android:hint="@string/pincode"
             android:inputType="number"
             android:maxLength="6"
             android:maxLines="1"
@@ -121,7 +121,7 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
-            android:text="Select your role"
+            android:text="@string/select_role"
             android:textColor="@color/colorPrimaryDark"
 
             android:textSize="18sp" />
@@ -138,25 +138,24 @@
                 android:layout_marginStart="25dp"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Worker"
-                android:onClick="onRadioButtonClicked"/>
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/worker" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Job user"
                 android:onClick="onRadioButtonClicked"
-                />
+                android:text="@string/job_user" />
+
             <RadioButton
+                android:id="@+id/radioButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioButton3"
                 android:layout_weight="1"
-                android:text="Contractor"
                 android:onClick="onRadioButtonClicked"
-                />
+                android:text="@string/contractor" />
         </RadioGroup>
     </LinearLayout>
 
@@ -169,7 +168,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/input_button"
-        android:text="Submit"
+        android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

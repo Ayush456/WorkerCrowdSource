@@ -52,7 +52,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:padding="4dp"
-            android:text="Enter Job1"
+            android:text="@string/enter_job1"
             android:textColor="@color/logoColor"
             android:textSize="15sp"
 
@@ -77,7 +77,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:padding="4dp"
-            android:text="Enter Job2"
+            android:text="@string/enter_job2"
             android:textColor="@color/logoColor" />
 
         <Spinner
@@ -98,7 +98,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:padding="4dp"
-            android:text="Enter Job3"
+            android:text="@string/enter_job3"
             android:textColor="@color/logoColor" />
 
         <EditText
@@ -110,7 +110,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/input_outline"
             android:ems="10"
-            android:hint="Enter your custom job input"
+            android:hint="@string/enter_custom_job_here"
             android:inputType="textMultiLine"
             android:padding="4dp"
             android:paddingStart="8dp"
@@ -131,23 +131,19 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="85dp"
+        android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+
         android:background="@drawable/input_button"
+        android:onClick="submitForm"
         android:padding="5dp"
-        android:text="SUBMIT"
+        android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.0"
-        android:onClick="submitForm"
-        />
+        app:layout_constraintVertical_bias="1.0" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

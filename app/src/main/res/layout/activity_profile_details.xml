@@ -61,17 +61,15 @@
         app:layout_constraintVertical_bias="0.796">
 
 
-
-
         <TextView
             android:id="@+id/textView42"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="4dp"
-            android:text="City"
-            android:textStyle="bold"
-            android:textColor="@color/logoColor" />
+            android:text="@string/city"
+            android:textColor="@color/logoColor"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView43"
@@ -110,12 +108,12 @@
         <TextView
             android:id="@+id/textView40"
             android:layout_width="50dp"
-            android:padding="4dp"
-            android:textStyle="bold"
-            android:textColor="@color/logoColor"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Contact No" />
+            android:padding="4dp"
+            android:text="@string/contact"
+            android:textColor="@color/logoColor"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView41"
@@ -158,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="4dp"
-            android:text="Email"
+            android:text="@string/email_id"
             android:textColor="@color/logoColor"
             android:textStyle="bold" />
 
@@ -206,7 +204,7 @@
                 android:layout_height="25dp"
                 android:layout_weight="1"
                 android:padding="4dp"
-                android:text="Name"
+                android:text="@string/name"
 
                 android:textColor="@color/logoColor"
                 android:textSize="15sp"
@@ -259,7 +257,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="4dp"
-            android:text="Address"
+            android:text="@string/address3"
             android:textColor="@color/logoColor"
             android:textStyle="bold" />
 

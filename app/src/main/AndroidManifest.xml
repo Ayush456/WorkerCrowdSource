@@ -26,33 +26,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserDetailsActivity" />
-        <activity android:name=".ShowContractors" />
-        <activity android:name=".JobsActivity" />
-        <activity android:name=".ProfilePictureActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".EmailAndPassActivity" />
-        <activity android:name=".PromptToSignupActivity" />
-        <activity android:name=".UserHomeActivity" />
-        <activity android:name=".ContractorHomeActivity" />
-        <activity android:name=".UserProvideJobsActivity" />
-        <activity android:name=".ProfileDetailsActivity" />
-        <activity android:name=".ChangeDetailsActivity" />
+        <activity android:name=".UserDetailsActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".ShowContractors"  android:configChanges="locale|orientation" />
+        <activity android:name=".JobsActivity" android:configChanges="locale|orientation" />
+        <activity android:name=".ProfilePictureActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".HomeActivity" android:configChanges="locale|orientation" />
+        <activity android:name=".EmailAndPassActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".PromptToSignupActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".UserHomeActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".ContractorHomeActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".UserProvideJobsActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".ProfileDetailsActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".ChangeDetailsActivity"  android:configChanges="locale|orientation" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ExpandedRecJobsActivity" />
-        <activity android:name=".RBMActivity" />
-        <activity android:name=".ContractorPostJobs" />
-        <activity android:name=".DisplayContractorRequests" />
-        <activity android:name=".ContractorEnhancedActivity" />
-        <activity android:name=".CheckActivity" />
-        <activity android:name=".EnrolledWorkerJobs" />
-        <activity android:name=".EnrolledWorkersActivity" />
-        <activity android:name=".InterestedJobsActivity" />
-        <activity android:name=".PostContractorJobs"></activity>
+        <activity android:name=".ExpandedRecJobsActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".RBMActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".ContractorPostJobs"  android:configChanges="locale|orientation" />
+        <activity android:name=".DisplayContractorRequests"  android:configChanges="locale|orientation" />
+        <activity android:name=".ContractorEnhancedActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".CheckActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".EnrolledWorkerJobs"  android:configChanges="locale|orientation" />
+        <activity android:name=".EnrolledWorkersActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".InterestedJobsActivity"  android:configChanges="locale|orientation" />
+        <activity android:name=".PostContractorJobs"  android:configChanges="locale|orientation"></activity>
     </application>
 
 </manifest>

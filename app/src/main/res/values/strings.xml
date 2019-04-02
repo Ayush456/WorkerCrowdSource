@@ -1,5 +1,83 @@
 <resources>
-    <string name="app_name">WorkerCrowdSource</string>
-    <string name="jobs_post_desc"><u>Enter Details of Jobs To Post</u></string>
+    <string name="app_name" translatable="false">WorkerCrowdSource</string>
 
+    <string name="login" translatable="false">Login</string>
+    <string name="signup" translatable="false">Signup</string>
+    <string name="new_user" translatable="false">New User?</string>
+    <string name="forgot_password" translatable="false">Forgot Password</string>
+    <string name="username" translatable="false">Username</string>
+    <string name="password">Password</string>
+    <string name="user_details_title">Please Enter Your Personal Details</string>
+    <string name="name">Name</string>
+    <string name="contact">Contact No</string>
+    <string name="address">Postal Address</string>
+    <string name="city">City</string>
+    <string name="pincode">Pincode</string>
+    <string name="select_role">Select Your Role</string>
+    <string name="worker">worker</string>
+    <string name="contractor">contractor</string>
+    <string name="job_user">Job user</string>
+    <string name="submit">Submit</string>
+    <string name="text_upload_profile_pic">Upload Your Profile Picture</string>
+    <string name="save_picture">Save Picture</string>
+    <string name="email_id">Email Id</string>
+     <string name="reenter_password">Re-enter Password</string>
+    <string name="verify">Verify</string>
+    <string name="enter_email_pass">Enter Email and Password</string>
+    <string name="change_name">Change Name</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_address">Change Address</string>
+    <string name="change_contact">Change Contact No</string>
+    <string name="change_city">Change City</string>
+
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="enter_contact">Enter Contact No</string>
+    <string name="enter_city">Enter City</string>
+
+    <string name="contractor_name">Contractor Name</string>
+    <string name="contractor_address">Contrator Address</string>
+    <string name="contractor_email">Contractor Email</string>
+
+    <string name="enter_job_desc">Enter Your Job Description</string>
+    <string name="enter_job_name">Enter Job Name</string>
+    <string name="enter_custom_job">Enter Custom Job</string>
+    <string name="choose_start">Choose Start Date</string>
+    <string name="choose_end">Choose End Date</string>
+    <string name="enter_custom_job_here">Enter Custom Job</string>
+    <string name="est_no_worker">Est No of Worker</string>
+    <string name="enter_job_address">Enter Job Address</string>
+    <string name="salary">Salary(per day)</string>
+
+    <string name="job_provider">Job Provider  :</string>
+    <string name="address2">Address     :</string>
+    <string name="job_title">Job Title  :</string>
+    <string name="salary2">Salary   :</string>
+    <string name="No_of_interested_worker">No of Interested Worker</string>
+    <string name="choose_startdate">Choose Start</string>
+    <string name="choose_enddate">Choose End</string>
+
+    <string name="enter_job1">Enter Job1</string>
+    <string name="enter_job2">Enter Job2</string>
+    <string name="enter_job3">Enter Job3</string>
+
+    <string name="address3">Address</string>
+    <string name="distance">Distance :</string>
+    <string name="enrolled">Enrolled :</string>
+    <string name="start_date">Start Date:</string>
+    <string name="end_date">End Date:</string>
+    <string name="worker_count">Worker Count:</string>
+    <string name="post_btn">Post</string>
+    <string name="jobs">Jobs</string>
+    <string name="contact2">Contact</string>
+
+    <string name="post_job">Post Job</string>
+    <string name="view_job">View Job</string>
+    <string name="my_profile">My Profile</string>
+    <string name="enrolled_worker">Enrolled Worker</string>
+    <string name="request">Request</string>
+    <string name="recommended_job">RC JOB</string>
+    <string name="interested">INTERESTED</string>
+    <string name="contractors">CONTRACTOR</string>
 </resources>

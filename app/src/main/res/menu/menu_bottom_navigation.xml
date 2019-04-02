@@ -5,27 +5,26 @@
     <item
         android:id="@+id/view_recommended_job"
         android:enabled="true"
-        android:title="RC JOBS"
+        android:title="@string/recommended_job"
         android:icon="@drawable/jobsearch"
         />
 
     <item
         android:id="@+id/view_workers_interested_jobs"
         android:enabled="true"
-        android:title="INTERESTED"
+        android:title="@string/interested"
         android:icon="@drawable/myinterest"
         />
     <item
         android:id="@+id/view_contractors"
         android:enabled="true"
-        android:title="CONTRACTORS"
         android:icon="@drawable/contractor"
-        />
+        android:title="@string/contractors" />
 
     <item
         android:id="@+id/view_profile"
         android:enabled="true"
-        android:title="MY PROFILE"
+        android:title="@string/my_profile"
         android:icon="@drawable/myprofile"
         />
 

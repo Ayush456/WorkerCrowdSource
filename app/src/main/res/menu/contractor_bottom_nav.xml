@@ -4,20 +4,20 @@
     <item
         android:id="@+id/post_contractorjob"
         android:enabled="true"
-        android:title="Post Jobs"
+        android:title="@string/post_job"
         android:icon="@drawable/post"
         />
     <item
         android:id="@+id/view_contractorjob"
         android:enabled="true"
-        android:title="View Jobs"
+        android:title="@string/view_job"
         android:icon="@drawable/contractor"
 
         />
 
     <item android:id="@+id/view_workerrequests"
         android:enabled="true"
-        android:title="Request"
+        android:title="@string/request"
         android:icon="@drawable/requests"
         />
 

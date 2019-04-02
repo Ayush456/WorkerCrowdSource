@@ -1,16 +1,24 @@
 package com.example.asus.workercrowdsource;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,9 +33,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Field;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public EditText mUsername,mPassowrd;
+    private TextView newuser;
     public Button mBtnLogin,mBtnSignup,mBtnForgotPass;
     private ProgressBar mprogressBar;
     private FirebaseAuth mAuth;
@@ -52,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mprogressBar = (ProgressBar) findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();  // firebase Auth initialization
         mprogressBar.setVisibility(View.GONE);
-
+        newuser = findViewById(R.id.textView);
 
 
         //user does a login from this side
@@ -243,20 +253,69 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-}
-//
-// role =dataSnapshot.child("Role").getValue(String.class).toString();
-//        if (role.equals("worker")){
-//        startActivity(new Intent(MainActivity.this,HomeActivity.class));
-//        }
-//        if (role.equals("contractor")){
-//        startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
-//        }
-//        if (role.equals("user")){
-//        startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
-//        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.language,menu);
 
-//  if (ContextCompat.checkSelfPermission(thisActivity, Manifest.permission.WRITE_CALENDAR)
-//        != PackageManager.PERMISSION_GRANTED) {
-//      Permission is not granted
-//}
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.english) {
+            Locale locale = new Locale("en");
+            locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            setLocale("en");
+            Toast.makeText(this, "Locale in English !", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        if (id == R.id.hindi) {
+            Locale locale = new Locale("hi");
+            locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            setLocale("hi");
+            Toast.makeText(this, "Locale in English !", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        if (id == R.id.marathi){
+            Locale locale = new Locale("mr");
+            locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            setLocale("mrN");
+            Toast.makeText(this, "Locale in English !", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleHelper.onAttach(base));
+    }
+
+
+    public void setLocale(String lang) {
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(this, MainActivity.class);
+        finish();
+        startActivity(refresh);
+
+    }
+}
