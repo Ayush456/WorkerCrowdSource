@@ -1,9 +1,12 @@
 package com.example.asus.workercrowdsource;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 public class UserDetailsActivity extends AppCompatActivity {
     private EditText mName,mCtNo,mAddr,mCity,mPin;

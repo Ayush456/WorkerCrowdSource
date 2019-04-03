@@ -10,7 +10,5 @@
         android:title="Hindi">
     </item>
 
-     <item android:id="@+id/marathi"
-        android:title="Marathi">
-     </item>
+
 </menu>

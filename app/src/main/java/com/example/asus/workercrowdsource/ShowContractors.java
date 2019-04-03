@@ -47,12 +47,16 @@ public class ShowContractors extends AppCompatActivity {
                 if (menuItem.getItemId() == R.id.view_recommended_job){
                     startActivity(new Intent(ShowContractors.this,HomeActivity.class));
 
-                }else if(menuItem.getItemId() == R.id.view_workers_interested_jobs){
-                    startActivity(new Intent(ShowContractors.this,InterestedJobsActivity.class));
-                }else if(menuItem.getItemId() == R.id.view_contractors){
-
                 }else{
-                    startActivity(new Intent(ShowContractors.this,ProfileDetailsActivity.class));
+                    if(menuItem.getItemId() == R.id.view_workers_interested_jobs){
+                        startActivity(new Intent(ShowContractors.this,InterestedJobsActivity.class));
+                    }else{
+                        if(menuItem.getItemId() == R.id.view_contractors){
+
+                        }else{
+                            startActivity(new Intent(ShowContractors.this,ProfileDetailsActivity.class));
+                        }
+                    }
                 }
             }
         });

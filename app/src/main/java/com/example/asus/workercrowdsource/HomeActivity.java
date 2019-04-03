@@ -66,13 +66,18 @@ public class HomeActivity extends AppCompatActivity {
            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
              if (menuItem.getItemId() == R.id.view_recommended_job){
 
-             }else if(R.id.view_workers_interested_jobs == menuItem.getItemId()){
-                startActivity(new Intent(HomeActivity.this,InterestedJobsActivity.class));
-             } else if(menuItem.getItemId() == R.id.view_contractors){
-                 startActivity(new Intent(HomeActivity.this,CheckActivity.class));
-
              }else{
-                 startActivity(new Intent(HomeActivity.this,ProfileDetailsActivity.class));
+                 if(R.id.view_workers_interested_jobs == menuItem.getItemId()){
+                     startActivity(new Intent(HomeActivity.this,InterestedJobsActivity.class));
+                 }else{
+                     if(menuItem.getItemId() == R.id.view_contractors){
+                         startActivity(new Intent(HomeActivity.this,CheckActivity.class));
+
+                     }else{
+                         startActivity(new Intent(HomeActivity.this,ProfileDetailsActivity.class));
+                     }
+                 }
+
              }
            }
        });

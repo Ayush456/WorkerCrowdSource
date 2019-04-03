@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     private String uid;
     private String role;
     private static final String TAG = "MainActivity";
+    public String language="en";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         mprogressBar.setVisibility(View.INVISIBLE);
-                                        //registeration is successful
                                          FirebaseUser mUser = mAuth.getCurrentUser();
                                          uid = mUser.getUid();
                                          updateUI(mUser,uid);
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
               Intent userDetails = new Intent(MainActivity.this,UserDetailsActivity.class);
+              userDetails.putExtra("language",language);
               startActivity(userDetails);
 
             }
@@ -149,12 +151,14 @@ public class MainActivity extends AppCompatActivity {
                 if (role.equals("worker")){
                     startActivity(new Intent(MainActivity.this,HomeActivity.class));
                     }
-                if (role.equals("contractor")){
-                startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+                    else{
+                    if (role.equals("contractor")){
+                        startActivity(new Intent(MainActivity.this,ContractorHomeActivity.class));
+                    }else{
+                            startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
+                       }
                 }
-                if (role.equals("user")){
-                startActivity(new Intent(MainActivity.this,UserHomeActivity.class));
-                }
+
 
         }
 
@@ -189,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
                       if (role.equals("worker")){
                           mprogressBar.setVisibility(View.INVISIBLE);
                           Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                          intent.putExtra("language",language);
                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                           startActivity(intent);
                           finish();
@@ -197,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
                       if (role.equals("contractor")){
                           mprogressBar.setVisibility(View.INVISIBLE);
                           Intent intent = new Intent(MainActivity.this, ContractorHomeActivity.class);
+                          intent.putExtra("language",language);
                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                           startActivity(intent);
                           finish();
@@ -206,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                       if (role.equals("user")){
                           mprogressBar.setVisibility(View.INVISIBLE);
                           Intent intent = new Intent(MainActivity.this, UserHomeActivity.class);
+                          intent.putExtra("language",language);
                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                           startActivity(intent);
                           finish();
@@ -226,9 +233,6 @@ public class MainActivity extends AppCompatActivity {
 
 
       }
-
-
-
 
     }
 
@@ -267,39 +271,25 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.english) {
+            language = "en";
             Locale locale = new Locale("en");
             locale.setDefault(locale);
             Configuration config = new Configuration();
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
             setLocale("en");
-            Toast.makeText(this, "Locale in English !", Toast.LENGTH_LONG).show();
             return true;
-        }
-        if (id == R.id.hindi) {
+        }else{
+            language = "hi";
             Locale locale = new Locale("hi");
             locale.setDefault(locale);
             Configuration config = new Configuration();
             config.locale = locale;
             getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
             setLocale("hi");
-            Toast.makeText(this, "Locale in English !", Toast.LENGTH_LONG).show();
-            return true;
-
-
-        }
-        if (id == R.id.marathi){
-            Locale locale = new Locale("mr");
-            locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-            setLocale("mrN");
-            Toast.makeText(this, "Locale in English !", Toast.LENGTH_LONG).show();
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+//        return super.onOptionsItemSelected(item);
     }
 
 
@@ -319,17 +309,6 @@ public class MainActivity extends AppCompatActivity {
         Intent refresh = new Intent(this, MainActivity.class);
         finish();
         startActivity(refresh);
-
     }
-    private static boolean updateResources(Context context, String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
 
-        Resources resources = context.getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.locale = locale;
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-
-        return true;
-    }
 }

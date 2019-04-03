@@ -62,12 +62,12 @@ public class UserHomeActivity extends AppCompatActivity {
                    Intent intent = new Intent(UserHomeActivity.this,UserProvideJobsActivity.class);
                    startActivity(intent);
 
-               }else if(menuItem.getItemId() == R.id.view_userjob){
+               }else{
+                   if(menuItem.getItemId() == R.id.view_userjob){
 
-
-
-               }else {
-                   startActivity(new Intent(UserHomeActivity.this,ProfileDetailsActivity.class));
+                   }else {
+                       startActivity(new Intent(UserHomeActivity.this,ProfileDetailsActivity.class));
+                   }
                }
             }
         });
