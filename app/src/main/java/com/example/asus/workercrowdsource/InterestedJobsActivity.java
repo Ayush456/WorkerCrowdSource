@@ -1,11 +1,13 @@
 package com.example.asus.workercrowdsource;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -23,11 +25,12 @@ import java.util.ArrayList;
 
 public class InterestedJobsActivity extends AppCompatActivity {
     private RecyclerView Rv_Job_Interested;
-    private BottomNavigationView mBottomNav;
+    private BottomNavigationView mBottomNav2;
     private FirebaseDatabase mDB;
     private FirebaseUser mUser;
     private FirebaseAuth mAuthUser;
     ArrayList<PostJobsObject> InterestJobs;
+
     String UID ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,28 @@ public class InterestedJobsActivity extends AppCompatActivity {
         Rv_Job_Interested = findViewById(R.id.rc_interested_jobs);
         Rv_Job_Interested.setLayoutManager(new LinearLayoutManager(this));
         Rv_Job_Interested.setHasFixedSize(true);
-        mBottomNav = findViewById(R.id.bottomNavigationView);
+        mBottomNav2 = findViewById(R.id.bottomNavigationView);
+
+        mBottomNav2.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.view_recommended_job){
+                    startActivity(new Intent(InterestedJobsActivity.this,HomeActivity.class));
+                }else{
+                    if(R.id.view_workers_interested_jobs == menuItem.getItemId()){
+                        //startActivity(new Intent(HomeActivity.this,InterestedJobsActivity.class));
+                    }else{
+                        if(menuItem.getItemId() == R.id.view_contractors){
+                            startActivity(new Intent(InterestedJobsActivity.this,CheckActivity.class));
+
+                        }else{
+                            startActivity(new Intent(InterestedJobsActivity.this,ProfileDetailsActivity.class));
+                        }
+                    }
+
+                }
+            }
+        });
     }
 
     @Override
