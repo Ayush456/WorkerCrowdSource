@@ -82,10 +82,6 @@ public class UserDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
 
     public void onRadioButtonClicked(View view) {

@@ -23,13 +23,13 @@
 
     <item android:id="@+id/view_myworkers"
         android:enabled="true"
-        android:title="Enrolled Workers"
+        android:title="@string/enrolled_worker"
         android:icon="@drawable/people"/>
 
     <item
         android:id="@+id/view_contractorprofile"
         android:enabled="true"
-        android:title="My Profile"
+        android:title="@string/my_profile"
         android:icon="@drawable/myprofile"
         />
 

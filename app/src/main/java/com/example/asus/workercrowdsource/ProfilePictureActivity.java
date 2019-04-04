@@ -75,34 +75,6 @@ public class ProfilePictureActivity extends AppCompatActivity {
 
                 startPostingImage(imageBitmap);
 
-                // Role wise we are setting the data value on Activity
-//                Intent prevIntent = getIntent();
-//                User user = (User) prevIntent.getSerializableExtra("UserObj");
-//                String role = user.getRole();
-//
-//                if (role.equalsIgnoreCase("user")){
-//                    Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
-//                    user.setPPLink(downloadUri.toString());
-//                    profilePicAct.putExtra("UserObj",user);
-//                    startActivity(profilePicAct);
-//
-//                }else if(role.equalsIgnoreCase("worker")){
-//                    Bundle bundle = getIntent().getExtras();
-//                    Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
-//                    user.setPPLink(downloadUri.toString());
-//                    profilePicAct.putExtra("UserObj",user);
-//                    startActivity(profilePicAct,bundle);
-//
-//                }else{
-//                    Intent profilePicAct = new Intent(ProfilePictureActivity.this,EmailAndPassActivity.class);
-//                    user.setPPLink(downloadUri.toString());
-//                    profilePicAct.putExtra("UserObj",user);
-//                    startActivity(profilePicAct);
-//
-//                }
-
-
-
             }
         });
 

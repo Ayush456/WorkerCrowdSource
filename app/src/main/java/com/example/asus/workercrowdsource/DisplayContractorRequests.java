@@ -59,15 +59,20 @@ public class DisplayContractorRequests extends AppCompatActivity  {
             public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.post_contractorjob){
                     startActivity(new Intent(DisplayContractorRequests.this,ContractorPostJobs.class));
-                }else if (menuItem.getItemId() == R.id.view_contractorjob){
-
-                }else if((menuItem.getItemId() == R.id.view_workerrequests)){
-                  //  startActivity(new Intent(DisplayContractorRequests.this,DisplayContractorRequests.class));
-
-                }else if((menuItem.getItemId() == R.id.view_myworkers)){
-
                 }else{
-                    startActivity(new Intent(DisplayContractorRequests.this,ProfileDetailsActivity.class));
+                    if (menuItem.getItemId() == R.id.view_contractorjob){
+                        startActivity(new Intent(DisplayContractorRequests.this,PostContractorJobs.class));
+                    }else{
+                        if((menuItem.getItemId() == R.id.view_workerrequests)){
+                            //startActivity(new Intent(ContractorHomeActivity.this,DisplayContractorRequests.class));
+                        }else{
+                            if((menuItem.getItemId() ==R.id.view_myworkers)){
+                                startActivity(new Intent(DisplayContractorRequests.this,EnrolledWorkersActivity.class));
+                            }else{
+                                startActivity(new Intent(DisplayContractorRequests.this,ProfileDetailsActivity.class));
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -125,48 +130,34 @@ public class DisplayContractorRequests extends AppCompatActivity  {
                                             public void onClick(View v) {
 
 
-
                                                 CharSequence options[] = new CharSequence[]
                                                         {
                                                                 "Accept",
                                                                 "Reject"
 
                                                         };
-
-
-
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(DisplayContractorRequests.this);
                                                 builder.setTitle(workername + " Enroll Request");
                                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
-
                                                         if(which == 0){
-
                                                             WorkersEnrolled.child(current_user_id).child(user_list).child("Status").setValue("Enrolled").addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
-
                                                                     if(task.isSuccessful()){
-
                                                                         EnrollReq.child(current_user_id).child(user_list).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                             @Override
                                                                             public void onComplete(@NonNull Task<Void> task) {
 
                                                                                 Toast.makeText(DisplayContractorRequests.this,"Worker Added to your List",Toast.LENGTH_SHORT).show();
-
                                                                             }
                                                                         });
                                                                     }
-
                                                                 }
                                                             });
-
-
                                                         }
-
                                                         if(which == 1){
-
                                                             EnrollReq.child(current_user_id).child(user_list).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
@@ -175,12 +166,7 @@ public class DisplayContractorRequests extends AppCompatActivity  {
 
                                                                 }
                                                             });
-
-
-
-
                                                         }
-
                                                     }
                                                 });
                                                 builder.show();
@@ -190,18 +176,14 @@ public class DisplayContractorRequests extends AppCompatActivity  {
 
 
                                         });
-
 //
                                     }
-
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                     }
                                 });
-
                             }
-
                         }
                     }
 
@@ -210,7 +192,6 @@ public class DisplayContractorRequests extends AppCompatActivity  {
 
                     }
                 });
-
 
             }
 

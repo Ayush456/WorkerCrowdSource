@@ -14,9 +14,9 @@
     <string name="city">शहर</string>
     <string name="pincode">पिन कोड</string>
     <string name="select_role">अपनी भूमिका का चयन करें</string>
-    <string name="worker">worker</string>
-    <string name="contractor">contractor</string>
-    <string name="job_user">job user</string>
+    <string name="worker">मज़दूर</string>
+    <string name="contractor">ठेकेदार</string>
+    <string name="job_user">नौकरी प्रदाता</string>
     <string name="submit">जमा करें</string>
     <string name="text_upload_profile_pic">अपना प्रोफ़ाइल चित्र अपलोड करें</string>
     <string name="save_picture">पिक्चर को सेव करना</string>
@@ -80,4 +80,5 @@
     <string name="recommended_job">सिफारिश की नौकरी</string>
     <string name="interested">रुचि</string>
     <string name="contractors">ठेकेदार</string>
+
 </resources>

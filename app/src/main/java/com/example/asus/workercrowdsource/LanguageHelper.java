@@ -15,9 +15,8 @@ public class LanguageHelper {
         String value = locale.toString();
         switch (value){
             case "hi":
-
                 break;
-            case "mr":
+            case "en":
                 config.setLocale(locale);
         }
     }

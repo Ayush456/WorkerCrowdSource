@@ -16,6 +16,8 @@
         app:cardBackgroundColor="@color/white"
         android:outlineSpotShadowColor="#424242"
         android:outlineAmbientShadowColor="#bdbdbd"
+        app:cardElevation="4dp"
+        app:cardMaxElevation="8dp"
         app:cardCornerRadius="12dp">
 
 

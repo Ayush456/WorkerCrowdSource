@@ -1,11 +1,14 @@
 package com.example.asus.workercrowdsource;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ public class EnrolledWorkersActivity extends AppCompatActivity {
     private String user_id;
     private DatabaseReference enroll,worker;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private BottomNavigationView mBottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,30 @@ public class EnrolledWorkersActivity extends AppCompatActivity {
         user_id = current_user.getUid();
         enroll = FirebaseDatabase.getInstance().getReference().child("EnrolledWorkers").child(user_id);
         worker = FirebaseDatabase.getInstance().getReference().child("Worker");
+
+        mBottomNav = findViewById(R.id.bottom_nav3);
+        mBottomNav.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.post_contractorjob){
+                    startActivity(new Intent(EnrolledWorkersActivity.this,ContractorPostJobs.class));
+                }else{
+                    if (menuItem.getItemId() == R.id.view_contractorjob){
+                        startActivity(new Intent(EnrolledWorkersActivity.this,PostContractorJobs.class));
+                    }else{
+                        if((menuItem.getItemId() == R.id.view_workerrequests)){
+                            startActivity(new Intent(EnrolledWorkersActivity.this,DisplayContractorRequests.class));
+                        }else{
+                            if((menuItem.getItemId() ==R.id.view_myworkers)){
+                               // startActivity(new Intent(ContractorHomeActivity.this,EnrolledWorkersActivity.class));
+                            }else{
+                                startActivity(new Intent(EnrolledWorkersActivity.this,ProfileDetailsActivity.class));
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
     }
 

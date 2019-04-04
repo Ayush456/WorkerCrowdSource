@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private String role;
     private static final String TAG = "MainActivity";
     public String language="en";
+    public Locale myLocale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        mprogressBar.setVisibility(View.INVISIBLE);
+                                         mprogressBar.setVisibility(View.INVISIBLE);
                                          FirebaseUser mUser = mAuth.getCurrentUser();
                                          uid = mUser.getUid();
                                          updateUI(mUser,uid);
@@ -271,32 +272,38 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.english) {
-            language = "en";
-            Locale locale = new Locale("en");
-            locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-            setLocale("en");
+//            language = "en";
+//            Locale locale = new Locale("en");
+//            locale.setDefault(locale);
+//            Configuration config = new Configuration();
+//            config.locale = locale;
+//            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+//            setLocale("en");
+//            return true;
+
+            setLocale2("en");
             return true;
         }else{
-            language = "hi";
-            Locale locale = new Locale("hi");
-            locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-            setLocale("hi");
+//            language = "hi";
+//            Locale locale = new Locale("hi");
+//            locale.setDefault(locale);
+//            Configuration config = new Configuration();
+//            config.locale = locale;
+//            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+//            setLocale("hi");
+//            return true;
+
+            setLocale2("hi");
             return true;
         }
 //        return super.onOptionsItemSelected(item);
     }
 
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleHelper.onAttach(base));
-    }
+//    @Override
+//    protected void attachBaseContext(Context base) {
+//        super.attachBaseContext(LocaleHelper.onAttach(base));
+//    }
 
 
     public void setLocale(String lang) {
@@ -307,6 +314,19 @@ public class MainActivity extends AppCompatActivity {
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
         Intent refresh = new Intent(this, MainActivity.class);
+        finish();
+        startActivity(refresh);
+    }
+
+    public void setLocale2(String localeName){
+        myLocale = new Locale(localeName);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(this, MainActivity.class);
+        //refresh.putExtra(currentLang, localeName);
         finish();
         startActivity(refresh);
     }
